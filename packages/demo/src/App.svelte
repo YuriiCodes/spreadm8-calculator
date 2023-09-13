@@ -6,7 +6,6 @@
 <main>
 
     <spreadm8-calc
-            background="orange"
     ></spreadm8-calc>
 
 </main>
@@ -14,5 +13,6 @@
 <style>
   main {
     width: 70vw;
+      background-color: #fff;
   }
 </style>

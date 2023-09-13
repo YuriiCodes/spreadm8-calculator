@@ -1,5 +1,9 @@
 <svelte:options tag="spreadm8-calc"/>
 <script lang="ts">
+    // a polyfill for the input[type="date"]
+    // element to work in all browsers - that
+    // solution is still smaller than including
+    // a whole library like lightpick or flatpickr
     import 'date-input-polyfill';
 
     const handleFormSubmit = (e) => {
@@ -25,34 +29,75 @@
             })
             .catch(err => console.log(err));
     }
-    export let background = 'red';
+
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Function to handle changes in dark mode preference
+    const handleDarkModeChange = (event) => {
+        isDarkMode = event.matches;
+    };
+
+    // Add a listener for changes in dark mode preference
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
+
+    export let light_mode_background = '#d2d0d0';
+    export let dark_mode_background = "#1f2937";
+    export let light_mode_text_color = '#1f2937';
+    export let dark_mode_text_color = '#f9fafb';
+
+    export let dark_mode_input_background = '#374151';
+    export let light_mode_input_background = '#f9fafb';
+
+    export let dark_mode_button_color = '#374151';
+    export let light_mode_button_color = '#f9fafb';
     export let border_radius = '0.5rem';
+
+    export let shadow: "none" | "sm" | "md"  | "lg" | "xl" | "2xl" = "none"
+
+    let background: string, text_color: string, input_background: string, button_color: string;
+    $: background = isDarkMode ? dark_mode_background : light_mode_background;
+    $: text_color = isDarkMode ? dark_mode_text_color : light_mode_text_color;
+    $: input_background = isDarkMode ? dark_mode_input_background : light_mode_input_background;
+    $: button_color = isDarkMode ? dark_mode_button_color : light_mode_button_color;
+    $: input_style = `
+    background-color: ${input_background};
+    color: ${text_color};
+    border-radius: ${border_radius};
+    `
 </script>
 
 
-<div class="w-1/2 p-4 shadow-lg" style="background-color: {background}; border-radius: {border_radius}">
+<div class={`w-full p-4 shadow-${shadow}}`} style={`
+        background-color: ${background};
+        border-radius: ${border_radius};
+        color: ${text_color};
+`}>
     <form>
         <div class="flex flex-col sm:gap-4">
             <div class="flex flex-col sm:flex-row sm:justify-around sm:gap-12">
                 <div class="w-full">
-                    <label for="date" class="text-white">Select Date</label>
-                    <input id="date" type="date" class="w-full rounded-md border px-3 py-2" name="date" placeholder="Select date" required />
-                    <span class="absolute right-2 top-2 text-gray-600"> </span>
+                    <label for="date">Select Date</label>
+                    <input id="date" type="date" class="w-full rounded-md px-3 py-2" name="date"
+                           placeholder="Select date" required style={input_style}/>
                 </div>
                 <div class="w-full">
-                    <label for="time" class="text-white">Select Time</label>
-                    <input id="time" type="time" class="w-full rounded-md border bg-white px-3 py-2" name="time" placeholder="Select Time" required />
-                    <span class="absolute right-2 top-2 text-gray-600"><i class="far fa-clock"></i></span>
+                    <label for="time">Select Time</label>
+                    <input id="time" type="time" class="w-full rounded-md px-3 py-2" name="time"
+                           placeholder="Select Time" required style={input_style}/>
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                 <div class="w-full">
-                    <label for="invoiceSizePay" class="text-white">I Paid</label>
-                    <input id="invoiceSizePay" type="number" step=".01" class="w-full rounded-md border bg-white px-3 py-2" name="invoiceSizePay" placeholder="10000" required />
+                    <label for="invoiceSizePay">I Paid</label>
+                    <input id="invoiceSizePay" type="number" step=".01"
+                           class="w-full rounded-md px-3 py-2" name="invoiceSizePay" placeholder="10000"
+                           required style={input_style}/>
                 </div>
                 <div class="w-full">
-                    <label for="sold_ccy" class="text-white">Currency</label>
-                    <select name="sold_ccy" id="sold_ccy" class="w-full rounded-md border bg-white px-3 py-2" required>
+                    <label for="sold_ccy" style="color: {text_color}">Currency</label>
+                    <select name="sold_ccy" id="sold_ccy" class="w-full rounded-md px-3 py-2" required
+                            style={input_style}>
                         <option selected>GBP</option>
                         <option>USD</option>
                         <option>EUR</option>
@@ -76,12 +121,15 @@
 
             <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                 <div class="w-full">
-                    <label for="invoiceSizeRec" class="text-white">I Received</label>
-                    <input id="invoiceSizeRec" type="number" step=".01" class="w-full rounded-md border bg-white px-3 py-2" name="invoiceSizeRec" placeholder="10000" required />
+                    <label for="invoiceSizeRec">I Received</label>
+                    <input id="invoiceSizeRec" type="number" step=".01"
+                           class="w-full rounded-md px-3 py-2" name="invoiceSizeRec" placeholder="10000"
+                           required style={input_style}/>
                 </div>
                 <div class="w-full">
-                    <label for="bought_ccy" class="text-white">Currency</label>
-                    <select name="bought_ccy" id="bought_ccy" class="w-full rounded-md border bg-white px-3 py-2" required>
+                    <label for="bought_ccy" style="color: {text_color}">Currency</label>
+                    <select name="bought_ccy" id="bought_ccy"  class="w-full rounded-md px-3 py-2"
+                            required style={input_style}>
                         <option selected>USD</option>
                         <option>GBP</option>
                         <option>EUR</option>
@@ -103,7 +151,10 @@
                 </div>
             </div>
             <div>
-                <button type="submit" class="rounded-lg bg-black px-6 py-3 text-white hover:bg-gray-900">See your charges</button>
+                <button type="submit" class="rounded-lg bg-black px-6 py-3"
+                        style="background-color: {button_color}; color: {text_color}">See your
+                    charges
+                </button>
             </div>
         </div>
     </form>
@@ -639,24 +690,8 @@
         --tw-backdrop-sepia:
     }
 
-    .absolute{
-        position: absolute
-    }
-
-    .right-2{
-        right: 0.5rem
-    }
-
-    .top-2{
-        top: 0.5rem
-    }
-
     .flex{
         display: flex
-    }
-
-    .w-1\/2{
-        width: 50%
     }
 
     .w-full{
@@ -675,23 +710,9 @@
         border-radius: 0.375rem
     }
 
-    .border{
-        border-width: 1px
-    }
-
     .bg-black{
         --tw-bg-opacity: 1;
         background-color: rgb(0 0 0 / var(--tw-bg-opacity))
-    }
-
-    .bg-blue-500{
-        --tw-bg-opacity: 1;
-        background-color: rgb(59 130 246 / var(--tw-bg-opacity))
-    }
-
-    .bg-white{
-        --tw-bg-opacity: 1;
-        background-color: rgb(255 255 255 / var(--tw-bg-opacity))
     }
 
     .p-4{
@@ -718,14 +739,10 @@
         padding-bottom: 0.75rem
     }
 
-    .text-gray-600{
-        --tw-text-opacity: 1;
-        color: rgb(75 85 99 / var(--tw-text-opacity))
-    }
-
-    .text-white{
-        --tw-text-opacity: 1;
-        color: rgb(255 255 255 / var(--tw-text-opacity))
+    .shadow-2xl{
+        --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
     .shadow-lg{
@@ -734,9 +751,22 @@
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .hover\:bg-gray-900:hover{
-        --tw-bg-opacity: 1;
-        background-color: rgb(17 24 39 / var(--tw-bg-opacity))
+    .shadow-none{
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .shadow-sm{
+        --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .shadow-xl{
+        --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
     @media (min-width: 640px){
@@ -760,5 +790,4 @@
             gap: 1rem
         }
     }
-
 </style>
