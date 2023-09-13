@@ -1,33 +1,41 @@
 <svelte:options tag="spreadm8-calc"/>
 <script lang="ts">
+    const BACKEND_URL="http://localhost:8000";
+
     // a polyfill for the input[type="date"]
     // element to work in all browsers - that
     // solution is still smaller than including
     // a whole library like lightpick or flatpickr
     import 'date-input-polyfill';
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        // format the value to the unified yyyy-mm-dd format:
-        const dateValue = new Date(e.target.date.value).toISOString().split('T')[0];
-        // console.log values:
-        console.log(dateValue);
-        //send that payload to the server:
-        fetch('/api/charges', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                date: dateValue,
+        const formData = new FormData(e.target);
 
-            })
+        const data = {};
+        for (let field of formData) {
+            const [key, value] = field;
+            data[key] = value;
+        }
+        data["prospect"] = "";
+        data["input_spread"] = "5";
+        data["prospect_annual_flow"] = "";
+        data["email_user"] = false;
+        data["user"] = "yuriypidlisnyi2020@gmail.com";
+        console.log(data)
+
+        const response = await fetch(`${BACKEND_URL}/calculate`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer whatever",
+            },
+            body: JSON.stringify(data),
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(err => console.log(err));
+        const json = await response.json();
+
+        console.log(json)
     }
 
     let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -73,7 +81,7 @@
         border-radius: ${border_radius};
         color: ${text_color};
 `}>
-    <form>
+    <form on:submit={handleFormSubmit}>
         <div class="flex flex-col sm:gap-4">
             <div class="flex flex-col sm:flex-row sm:justify-around sm:gap-12">
                 <div class="w-full">
@@ -89,9 +97,9 @@
             </div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                 <div class="w-full">
-                    <label for="invoiceSizePay">I Paid</label>
-                    <input id="invoiceSizePay" type="number" step=".01"
-                           class="w-full rounded-md px-3 py-2" name="invoiceSizePay" placeholder="10000"
+                    <label for="sold_notional">I Paid</label>
+                    <input id="sold_notional" type="number" step=".01"
+                           class="w-full rounded-md px-3 py-2" name="sold_notional" placeholder="10000"
                            required style={input_style}/>
                 </div>
                 <div class="w-full">
@@ -121,9 +129,9 @@
 
             <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                 <div class="w-full">
-                    <label for="invoiceSizeRec">I Received</label>
-                    <input id="invoiceSizeRec" type="number" step=".01"
-                           class="w-full rounded-md px-3 py-2" name="invoiceSizeRec" placeholder="10000"
+                    <label for="bought_notional">I Received</label>
+                    <input id="bought_notional" type="number" step=".01"
+                           class="w-full rounded-md px-3 py-2" name="bought_notional" placeholder="10000"
                            required style={input_style}/>
                 </div>
                 <div class="w-full">
