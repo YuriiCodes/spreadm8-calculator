@@ -1,4 +1,4 @@
-<svelte:options tag="my-component"/>
+<svelte:options tag="spreadm8-calc"/>
 <script lang="ts">
     import 'date-input-polyfill';
 

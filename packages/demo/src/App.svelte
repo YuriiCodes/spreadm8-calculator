@@ -5,9 +5,9 @@
 
 <main>
 
-    <my-component
+    <spreadm8-calc
             background="orange"
-    ></my-component>
+    ></spreadm8-calc>
 
 </main>
 
