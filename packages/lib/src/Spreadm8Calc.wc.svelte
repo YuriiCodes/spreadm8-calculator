@@ -94,6 +94,8 @@
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
 
+
+    // Props
     export let light_mode_background = '#d2d0d0';
     export let dark_mode_background = "#1f2937";
     export let light_mode_text_color = '#1f2937';
