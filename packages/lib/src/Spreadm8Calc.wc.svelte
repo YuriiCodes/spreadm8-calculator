@@ -1,12 +1,56 @@
 <svelte:options tag="spreadm8-calc"/>
 <script lang="ts">
-    const BACKEND_URL="http://localhost:8000";
-
+    const BACKEND_URL = "http://localhost:8000";
+    import 'date-input-polyfill';
     // a polyfill for the input[type="date"]
     // element to work in all browsers - that
     // solution is still smaller than including
     // a whole library like lightpick or flatpickr
-    import 'date-input-polyfill';
+
+    const fetcher = async (data: any) => {
+        const res = await fetch(`${BACKEND_URL}/calculate`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer whatever",
+            },
+            body: JSON.stringify(data),
+        })
+        return res.json()
+    }
+
+
+    let backendData: any = undefined;
+    let isIdle = true;
+    let error: any = undefined;
+    let isFetching = false;
+
+    const resetForm = () => {
+        backendData = undefined;
+        isIdle = true;
+        error = false;
+        isFetching = false;
+    }
+
+    const mutate = (formData: any) => {
+        isIdle = false;
+        isFetching = true;
+        error = false;
+        fetcher(formData).then((res) => {
+            isFetching = false;
+            error = false;
+            isIdle = false;
+            console.log("Success")
+            console.log(res)
+            backendData = res;
+        }).catch((e) => {
+            isFetching = false;
+            error = e;
+            isIdle = false;
+            console.log(e)
+        })
+    }
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -24,18 +68,9 @@
         data["user"] = "yuriypidlisnyi2020@gmail.com";
         console.log(data)
 
-        const response = await fetch(`${BACKEND_URL}/calculate`, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer whatever",
-            },
-            body: JSON.stringify(data),
-        })
-        const json = await response.json();
+        mutate(data)
 
-        console.log(json)
+
     }
 
     let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -61,7 +96,7 @@
     export let light_mode_button_color = '#f9fafb';
     export let border_radius = '0.5rem';
 
-    export let shadow: "none" | "sm" | "md"  | "lg" | "xl" | "2xl" = "none"
+    export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "none"
 
     let background: string, text_color: string, input_background: string, button_color: string;
     $: background = isDarkMode ? dark_mode_background : light_mode_background;
@@ -75,100 +110,106 @@
     `
 </script>
 
-
 <div class={`w-full p-4 shadow-${shadow}}`} style={`
         background-color: ${background};
         border-radius: ${border_radius};
         color: ${text_color};
 `}>
-    <form on:submit={handleFormSubmit}>
-        <div class="flex flex-col sm:gap-4">
-            <div class="flex flex-col sm:flex-row sm:justify-around sm:gap-12">
-                <div class="w-full">
-                    <label for="date">Select Date</label>
-                    <input id="date" type="date" class="w-full rounded-md px-3 py-2" name="date"
-                           placeholder="Select date" required style={input_style}/>
+    {#if isIdle}
+        <form on:submit={handleFormSubmit}>
+            <div class="flex flex-col sm:gap-4">
+                <div class="flex flex-col sm:flex-row sm:justify-around sm:gap-12">
+                    <div class="w-full">
+                        <label for="date">Select Date</label>
+                        <input id="date" type="date" class="w-full rounded-md px-3 py-2" name="date"
+                               placeholder="Select date" required style={input_style}/>
+                    </div>
+                    <div class="w-full">
+                        <label for="time">Select Time</label>
+                        <input id="time" type="time" class="w-full rounded-md px-3 py-2" name="time"
+                               placeholder="Select Time" required style={input_style}/>
+                    </div>
                 </div>
-                <div class="w-full">
-                    <label for="time">Select Time</label>
-                    <input id="time" type="time" class="w-full rounded-md px-3 py-2" name="time"
-                           placeholder="Select Time" required style={input_style}/>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
+                    <div class="w-full">
+                        <label for="sold_notional">I Paid</label>
+                        <input id="sold_notional" type="number" step=".01"
+                               class="w-full rounded-md px-3 py-2" name="sold_notional" placeholder="10000"
+                               required style={input_style}/>
+                    </div>
+                    <div class="w-full">
+                        <label for="sold_ccy" style="color: {text_color}">Currency</label>
+                        <select name="sold_ccy" id="sold_ccy" class="w-full rounded-md px-3 py-2" required
+                                style={input_style}>
+                            <option selected>GBP</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                            <option>JPY</option>
+                            <option>CHF</option>
+                            <option>CNY</option>
+                            <option>NZD</option>
+                            <option>SGD</option>
+                            <option>INR</option>
+                            <option>AUD</option>
+                            <option>CAD</option>
+                            <option>HKD</option>
+                            <option>MYR</option>
+                            <option>NOK</option>
+                            <option>ZAR</option>
+                            <option>RUB</option>
+                            <option>SEK</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
-                <div class="w-full">
-                    <label for="sold_notional">I Paid</label>
-                    <input id="sold_notional" type="number" step=".01"
-                           class="w-full rounded-md px-3 py-2" name="sold_notional" placeholder="10000"
-                           required style={input_style}/>
-                </div>
-                <div class="w-full">
-                    <label for="sold_ccy" style="color: {text_color}">Currency</label>
-                    <select name="sold_ccy" id="sold_ccy" class="w-full rounded-md px-3 py-2" required
-                            style={input_style}>
-                        <option selected>GBP</option>
-                        <option>USD</option>
-                        <option>EUR</option>
-                        <option>JPY</option>
-                        <option>CHF</option>
-                        <option>CNY</option>
-                        <option>NZD</option>
-                        <option>SGD</option>
-                        <option>INR</option>
-                        <option>AUD</option>
-                        <option>CAD</option>
-                        <option>HKD</option>
-                        <option>MYR</option>
-                        <option>NOK</option>
-                        <option>ZAR</option>
-                        <option>RUB</option>
-                        <option>SEK</option>
-                    </select>
-                </div>
-            </div>
 
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
-                <div class="w-full">
-                    <label for="bought_notional">I Received</label>
-                    <input id="bought_notional" type="number" step=".01"
-                           class="w-full rounded-md px-3 py-2" name="bought_notional" placeholder="10000"
-                           required style={input_style}/>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
+                    <div class="w-full">
+                        <label for="bought_notional">I Received</label>
+                        <input id="bought_notional" type="number" step=".01"
+                               class="w-full rounded-md px-3 py-2" name="bought_notional" placeholder="10000"
+                               required style={input_style}/>
+                    </div>
+                    <div class="w-full">
+                        <label for="bought_ccy" style="color: {text_color}">Currency</label>
+                        <select name="bought_ccy" id="bought_ccy" class="w-full rounded-md px-3 py-2"
+                                required style={input_style}>
+                            <option selected>USD</option>
+                            <option>GBP</option>
+                            <option>EUR</option>
+                            <option>JPY</option>
+                            <option>CHF</option>
+                            <option>CNY</option>
+                            <option>NZD</option>
+                            <option>SGD</option>
+                            <option>INR</option>
+                            <option>AUD</option>
+                            <option>CAD</option>
+                            <option>HKD</option>
+                            <option>MYR</option>
+                            <option>NOK</option>
+                            <option>ZAR</option>
+                            <option>RUB</option>
+                            <option>SEK</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="w-full">
-                    <label for="bought_ccy" style="color: {text_color}">Currency</label>
-                    <select name="bought_ccy" id="bought_ccy"  class="w-full rounded-md px-3 py-2"
-                            required style={input_style}>
-                        <option selected>USD</option>
-                        <option>GBP</option>
-                        <option>EUR</option>
-                        <option>JPY</option>
-                        <option>CHF</option>
-                        <option>CNY</option>
-                        <option>NZD</option>
-                        <option>SGD</option>
-                        <option>INR</option>
-                        <option>AUD</option>
-                        <option>CAD</option>
-                        <option>HKD</option>
-                        <option>MYR</option>
-                        <option>NOK</option>
-                        <option>ZAR</option>
-                        <option>RUB</option>
-                        <option>SEK</option>
-                    </select>
+                <div>
+                    <button type="submit"
+                            class="rounded-lg bg-black px-6 py-3"
+                            style="background-color: {button_color}; color: {text_color}">See your
+                        charges
+                    </button>
                 </div>
             </div>
-            <div>
-                <button type="submit" class="rounded-lg bg-black px-6 py-3"
-                        style="background-color: {button_color}; color: {text_color}">See your
-                    charges
-                </button>
-            </div>
-        </div>
-    </form>
+        </form>
+    {:else if isFetching}
+        <h1>Laoding..</h1>
+    {:else if backendData}
+        <pre>{JSON.stringify(backendData)}</pre>
+    {:else}
+        <h1>an unknown error</h1>
+    {/if}
 </div>
-
-
 <style>
     /*
 ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
@@ -598,7 +639,7 @@
         display: none;
     }
 
-    *, ::before, ::after{
+    *, ::before, ::after {
         --tw-border-spacing-x: 0;
         --tw-border-spacing-y: 0;
         --tw-translate-x: 0;
@@ -608,19 +649,19 @@
         --tw-skew-y: 0;
         --tw-scale-x: 1;
         --tw-scale-y: 1;
-        --tw-pan-x:  ;
-        --tw-pan-y:  ;
-        --tw-pinch-zoom:  ;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
         --tw-scroll-snap-strictness: proximity;
-        --tw-gradient-from-position:  ;
-        --tw-gradient-via-position:  ;
-        --tw-gradient-to-position:  ;
-        --tw-ordinal:  ;
-        --tw-slashed-zero:  ;
-        --tw-numeric-figure:  ;
-        --tw-numeric-spacing:  ;
-        --tw-numeric-fraction:  ;
-        --tw-ring-inset:  ;
+        --tw-gradient-from-position: ;
+        --tw-gradient-via-position: ;
+        --tw-gradient-to-position: ;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
         --tw-ring-offset-width: 0px;
         --tw-ring-offset-color: #fff;
         --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -628,27 +669,27 @@
         --tw-ring-shadow: 0 0 #0000;
         --tw-shadow: 0 0 #0000;
         --tw-shadow-colored: 0 0 #0000;
-        --tw-blur:  ;
-        --tw-brightness:  ;
-        --tw-contrast:  ;
-        --tw-grayscale:  ;
-        --tw-hue-rotate:  ;
-        --tw-invert:  ;
-        --tw-saturate:  ;
-        --tw-sepia:  ;
-        --tw-drop-shadow:  ;
-        --tw-backdrop-blur:  ;
-        --tw-backdrop-brightness:  ;
-        --tw-backdrop-contrast:  ;
-        --tw-backdrop-grayscale:  ;
-        --tw-backdrop-hue-rotate:  ;
-        --tw-backdrop-invert:  ;
-        --tw-backdrop-opacity:  ;
-        --tw-backdrop-saturate:  ;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
         --tw-backdrop-sepia:
     }
 
-    ::backdrop{
+    ::backdrop {
         --tw-border-spacing-x: 0;
         --tw-border-spacing-y: 0;
         --tw-translate-x: 0;
@@ -658,19 +699,19 @@
         --tw-skew-y: 0;
         --tw-scale-x: 1;
         --tw-scale-y: 1;
-        --tw-pan-x:  ;
-        --tw-pan-y:  ;
-        --tw-pinch-zoom:  ;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
         --tw-scroll-snap-strictness: proximity;
-        --tw-gradient-from-position:  ;
-        --tw-gradient-via-position:  ;
-        --tw-gradient-to-position:  ;
-        --tw-ordinal:  ;
-        --tw-slashed-zero:  ;
-        --tw-numeric-figure:  ;
-        --tw-numeric-spacing:  ;
-        --tw-numeric-fraction:  ;
-        --tw-ring-inset:  ;
+        --tw-gradient-from-position: ;
+        --tw-gradient-via-position: ;
+        --tw-gradient-to-position: ;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
         --tw-ring-offset-width: 0px;
         --tw-ring-offset-color: #fff;
         --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -678,123 +719,123 @@
         --tw-ring-shadow: 0 0 #0000;
         --tw-shadow: 0 0 #0000;
         --tw-shadow-colored: 0 0 #0000;
-        --tw-blur:  ;
-        --tw-brightness:  ;
-        --tw-contrast:  ;
-        --tw-grayscale:  ;
-        --tw-hue-rotate:  ;
-        --tw-invert:  ;
-        --tw-saturate:  ;
-        --tw-sepia:  ;
-        --tw-drop-shadow:  ;
-        --tw-backdrop-blur:  ;
-        --tw-backdrop-brightness:  ;
-        --tw-backdrop-contrast:  ;
-        --tw-backdrop-grayscale:  ;
-        --tw-backdrop-hue-rotate:  ;
-        --tw-backdrop-invert:  ;
-        --tw-backdrop-opacity:  ;
-        --tw-backdrop-saturate:  ;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
         --tw-backdrop-sepia:
     }
 
-    .flex{
+    .flex {
         display: flex
     }
 
-    .w-full{
+    .w-full {
         width: 100%
     }
 
-    .flex-col{
+    .flex-col {
         flex-direction: column
     }
 
-    .rounded-lg{
+    .rounded-lg {
         border-radius: 0.5rem
     }
 
-    .rounded-md{
+    .rounded-md {
         border-radius: 0.375rem
     }
 
-    .bg-black{
+    .bg-black {
         --tw-bg-opacity: 1;
         background-color: rgb(0 0 0 / var(--tw-bg-opacity))
     }
 
-    .p-4{
+    .p-4 {
         padding: 1rem
     }
 
-    .px-3{
+    .px-3 {
         padding-left: 0.75rem;
         padding-right: 0.75rem
     }
 
-    .px-6{
+    .px-6 {
         padding-left: 1.5rem;
         padding-right: 1.5rem
     }
 
-    .py-2{
+    .py-2 {
         padding-top: 0.5rem;
         padding-bottom: 0.5rem
     }
 
-    .py-3{
+    .py-3 {
         padding-top: 0.75rem;
         padding-bottom: 0.75rem
     }
 
-    .shadow-2xl{
+    .shadow-2xl {
         --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-lg{
+    .shadow-lg {
         --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-none{
+    .shadow-none {
         --tw-shadow: 0 0 #0000;
         --tw-shadow-colored: 0 0 #0000;
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-sm{
+    .shadow-sm {
         --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-xl{
+    .shadow-xl {
         --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    @media (min-width: 640px){
-        .sm\:flex-row{
+    @media (min-width: 640px) {
+        .sm\:flex-row {
             flex-direction: row
         }
 
-        .sm\:justify-between{
+        .sm\:justify-between {
             justify-content: space-between
         }
 
-        .sm\:justify-around{
+        .sm\:justify-around {
             justify-content: space-around
         }
 
-        .sm\:gap-12{
+        .sm\:gap-12 {
             gap: 3rem
         }
 
-        .sm\:gap-4{
+        .sm\:gap-4 {
             gap: 1rem
         }
     }
