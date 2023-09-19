@@ -98,15 +98,21 @@
     // Props
     export let light_mode_background = '#d2d0d0';
     export let dark_mode_background = "#1f2937";
+
     export let light_mode_text_color = '#1f2937';
     export let dark_mode_text_color = '#f9fafb';
+
 
     export let dark_mode_input_background = '#374151';
     export let light_mode_input_background = '#f9fafb';
 
+
     export let dark_mode_button_color = '#374151';
     export let light_mode_button_color = '#f9fafb';
+
     export let border_radius = '0.5rem';
+
+    export let input_border_radius = '0.5rem';
 
     export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "none"
 
@@ -118,7 +124,7 @@
     $: input_style = `
     background-color: ${input_background};
     color: ${text_color};
-    border-radius: ${border_radius};
+    border-radius: ${input_border_radius}px;
     `
 </script>
 
