@@ -6,6 +6,8 @@
 <main>
 
     <spreadm8-calc
+            dark_mode_background="#000"
+            shadow="md"
     ></spreadm8-calc>
 
 </main>

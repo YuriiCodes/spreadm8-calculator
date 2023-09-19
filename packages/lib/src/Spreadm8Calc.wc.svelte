@@ -122,7 +122,7 @@
     `
 </script>
 
-<div class={`w-full p-4 shadow-${shadow}}`} style={`
+<div class={`w-full p-4 shadow-${shadow}`} style={`
         background-color: ${background};
         border-radius: ${border_radius};
         color: ${text_color};
@@ -713,7 +713,7 @@
         display: none;
     }
 
-    *, ::before, ::after {
+    *, ::before, ::after{
         --tw-border-spacing-x: 0;
         --tw-border-spacing-y: 0;
         --tw-translate-x: 0;
@@ -723,19 +723,19 @@
         --tw-skew-y: 0;
         --tw-scale-x: 1;
         --tw-scale-y: 1;
-        --tw-pan-x: ;
-        --tw-pan-y: ;
-        --tw-pinch-zoom: ;
+        --tw-pan-x:  ;
+        --tw-pan-y:  ;
+        --tw-pinch-zoom:  ;
         --tw-scroll-snap-strictness: proximity;
-        --tw-gradient-from-position: ;
-        --tw-gradient-via-position: ;
-        --tw-gradient-to-position: ;
-        --tw-ordinal: ;
-        --tw-slashed-zero: ;
-        --tw-numeric-figure: ;
-        --tw-numeric-spacing: ;
-        --tw-numeric-fraction: ;
-        --tw-ring-inset: ;
+        --tw-gradient-from-position:  ;
+        --tw-gradient-via-position:  ;
+        --tw-gradient-to-position:  ;
+        --tw-ordinal:  ;
+        --tw-slashed-zero:  ;
+        --tw-numeric-figure:  ;
+        --tw-numeric-spacing:  ;
+        --tw-numeric-fraction:  ;
+        --tw-ring-inset:  ;
         --tw-ring-offset-width: 0px;
         --tw-ring-offset-color: #fff;
         --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -743,27 +743,27 @@
         --tw-ring-shadow: 0 0 #0000;
         --tw-shadow: 0 0 #0000;
         --tw-shadow-colored: 0 0 #0000;
-        --tw-blur: ;
-        --tw-brightness: ;
-        --tw-contrast: ;
-        --tw-grayscale: ;
-        --tw-hue-rotate: ;
-        --tw-invert: ;
-        --tw-saturate: ;
-        --tw-sepia: ;
-        --tw-drop-shadow: ;
-        --tw-backdrop-blur: ;
-        --tw-backdrop-brightness: ;
-        --tw-backdrop-contrast: ;
-        --tw-backdrop-grayscale: ;
-        --tw-backdrop-hue-rotate: ;
-        --tw-backdrop-invert: ;
-        --tw-backdrop-opacity: ;
-        --tw-backdrop-saturate: ;
+        --tw-blur:  ;
+        --tw-brightness:  ;
+        --tw-contrast:  ;
+        --tw-grayscale:  ;
+        --tw-hue-rotate:  ;
+        --tw-invert:  ;
+        --tw-saturate:  ;
+        --tw-sepia:  ;
+        --tw-drop-shadow:  ;
+        --tw-backdrop-blur:  ;
+        --tw-backdrop-brightness:  ;
+        --tw-backdrop-contrast:  ;
+        --tw-backdrop-grayscale:  ;
+        --tw-backdrop-hue-rotate:  ;
+        --tw-backdrop-invert:  ;
+        --tw-backdrop-opacity:  ;
+        --tw-backdrop-saturate:  ;
         --tw-backdrop-sepia:
     }
 
-    ::backdrop {
+    ::backdrop{
         --tw-border-spacing-x: 0;
         --tw-border-spacing-y: 0;
         --tw-translate-x: 0;
@@ -773,19 +773,19 @@
         --tw-skew-y: 0;
         --tw-scale-x: 1;
         --tw-scale-y: 1;
-        --tw-pan-x: ;
-        --tw-pan-y: ;
-        --tw-pinch-zoom: ;
+        --tw-pan-x:  ;
+        --tw-pan-y:  ;
+        --tw-pinch-zoom:  ;
         --tw-scroll-snap-strictness: proximity;
-        --tw-gradient-from-position: ;
-        --tw-gradient-via-position: ;
-        --tw-gradient-to-position: ;
-        --tw-ordinal: ;
-        --tw-slashed-zero: ;
-        --tw-numeric-figure: ;
-        --tw-numeric-spacing: ;
-        --tw-numeric-fraction: ;
-        --tw-ring-inset: ;
+        --tw-gradient-from-position:  ;
+        --tw-gradient-via-position:  ;
+        --tw-gradient-to-position:  ;
+        --tw-ordinal:  ;
+        --tw-slashed-zero:  ;
+        --tw-numeric-figure:  ;
+        --tw-numeric-spacing:  ;
+        --tw-numeric-fraction:  ;
+        --tw-ring-inset:  ;
         --tw-ring-offset-width: 0px;
         --tw-ring-offset-color: #fff;
         --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -793,262 +793,214 @@
         --tw-ring-shadow: 0 0 #0000;
         --tw-shadow: 0 0 #0000;
         --tw-shadow-colored: 0 0 #0000;
-        --tw-blur: ;
-        --tw-brightness: ;
-        --tw-contrast: ;
-        --tw-grayscale: ;
-        --tw-hue-rotate: ;
-        --tw-invert: ;
-        --tw-saturate: ;
-        --tw-sepia: ;
-        --tw-drop-shadow: ;
-        --tw-backdrop-blur: ;
-        --tw-backdrop-brightness: ;
-        --tw-backdrop-contrast: ;
-        --tw-backdrop-grayscale: ;
-        --tw-backdrop-hue-rotate: ;
-        --tw-backdrop-invert: ;
-        --tw-backdrop-opacity: ;
-        --tw-backdrop-saturate: ;
+        --tw-blur:  ;
+        --tw-brightness:  ;
+        --tw-contrast:  ;
+        --tw-grayscale:  ;
+        --tw-hue-rotate:  ;
+        --tw-invert:  ;
+        --tw-saturate:  ;
+        --tw-sepia:  ;
+        --tw-drop-shadow:  ;
+        --tw-backdrop-blur:  ;
+        --tw-backdrop-brightness:  ;
+        --tw-backdrop-contrast:  ;
+        --tw-backdrop-grayscale:  ;
+        --tw-backdrop-hue-rotate:  ;
+        --tw-backdrop-invert:  ;
+        --tw-backdrop-opacity:  ;
+        --tw-backdrop-saturate:  ;
         --tw-backdrop-sepia:
     }
 
-    .mr-2 {
-        margin-right: 0.5rem
-    }
-
-    .mr-3 {
+    .mr-3{
         margin-right: 0.75rem
     }
 
-    .mt-4 {
+    .mt-4{
         margin-top: 1rem
     }
 
-    .mt-6 {
+    .mt-6{
         margin-top: 1.5rem
     }
 
-    .inline {
+    .inline{
         display: inline
     }
 
-    .flex {
+    .flex{
         display: flex
     }
 
-    .inline-flex {
+    .inline-flex{
         display: inline-flex
     }
 
-    .h-4 {
+    .h-4{
         height: 1rem
     }
 
-    .w-4 {
+    .w-4{
         width: 1rem
     }
 
-    .w-full {
+    .w-full{
         width: 100%
     }
 
-    @keyframes spin {
-        to {
+    @keyframes spin{
+        to{
             transform: rotate(360deg)
         }
     }
 
-    .animate-spin {
+    .animate-spin{
         animation: spin 1s linear infinite
     }
 
-    .flex-col {
+    .flex-col{
         flex-direction: column
     }
 
-    .items-center {
+    .items-center{
         align-items: center
     }
 
-    .gap-12 {
-        gap: 3rem
-    }
-
-    .gap-2 {
+    .gap-2{
         gap: 0.5rem
     }
 
-    .gap-4 {
+    .gap-4{
         gap: 1rem
     }
 
-    .gap-6 {
-        gap: 1.5rem
-    }
-
-    .divide-y > :not([hidden]) ~ :not([hidden]) {
+    .divide-y > :not([hidden]) ~ :not([hidden]){
         --tw-divide-y-reverse: 0;
         border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
         border-bottom-width: calc(1px * var(--tw-divide-y-reverse))
     }
 
-    .rounded-lg {
+    .rounded-lg{
         border-radius: 0.5rem
     }
 
-    .rounded-md {
+    .rounded-md{
         border-radius: 0.375rem
     }
 
-    .bg-black {
+    .bg-black{
         --tw-bg-opacity: 1;
         background-color: rgb(0 0 0 / var(--tw-bg-opacity))
     }
 
-    .bg-blue-700 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(29 78 216 / var(--tw-bg-opacity))
-    }
-
-    .p-4 {
+    .p-4{
         padding: 1rem
     }
 
-    .px-3 {
+    .px-3{
         padding-left: 0.75rem;
         padding-right: 0.75rem
     }
 
-    .px-5 {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem
-    }
-
-    .px-6 {
+    .px-6{
         padding-left: 1.5rem;
         padding-right: 1.5rem
     }
 
-    .py-2 {
+    .py-2{
         padding-top: 0.5rem;
         padding-bottom: 0.5rem
     }
 
-    .py-2\.5 {
-        padding-top: 0.625rem;
-        padding-bottom: 0.625rem
-    }
-
-    .py-3 {
+    .py-3{
         padding-top: 0.75rem;
         padding-bottom: 0.75rem
     }
 
-    .text-center {
+    .text-center{
         text-align: center
     }
 
-    .text-2xl {
+    .text-2xl{
         font-size: 1.5rem;
         line-height: 2rem
     }
 
-    .text-sm {
+    .text-sm{
         font-size: 0.875rem;
         line-height: 1.25rem
     }
 
-    .font-medium {
+    .font-medium{
         font-weight: 500
     }
 
-    .text-white {
+    .text-white{
         --tw-text-opacity: 1;
         color: rgb(255 255 255 / var(--tw-text-opacity))
     }
 
-    .shadow-2xl {
+    .shadow{
+        --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .shadow-2xl{
         --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-lg {
+    .shadow-lg{
         --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-none {
+    .shadow-md{
+        --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .shadow-none{
         --tw-shadow: 0 0 #0000;
         --tw-shadow-colored: 0 0 #0000;
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-sm {
+    .shadow-sm{
         --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .shadow-xl {
+    .shadow-xl{
         --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
     }
 
-    .hover\:bg-blue-800:hover {
-        --tw-bg-opacity: 1;
-        background-color: rgb(30 64 175 / var(--tw-bg-opacity))
-    }
-
-    .focus\:ring-4:focus {
-        --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
-    }
-
-    .focus\:ring-blue-300:focus {
-        --tw-ring-opacity: 1;
-        --tw-ring-color: rgb(147 197 253 / var(--tw-ring-opacity))
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .dark\:bg-blue-600 {
-            --tw-bg-opacity: 1;
-            background-color: rgb(37 99 235 / var(--tw-bg-opacity))
-        }
-
-        .dark\:hover\:bg-blue-700:hover {
-            --tw-bg-opacity: 1;
-            background-color: rgb(29 78 216 / var(--tw-bg-opacity))
-        }
-
-        .dark\:focus\:ring-blue-800:focus {
-            --tw-ring-opacity: 1;
-            --tw-ring-color: rgb(30 64 175 / var(--tw-ring-opacity))
-        }
-    }
-
-    @media (min-width: 640px) {
-        .sm\:flex-row {
+    @media (min-width: 640px){
+        .sm\:flex-row{
             flex-direction: row
         }
 
-        .sm\:justify-between {
+        .sm\:justify-between{
             justify-content: space-between
         }
 
-        .sm\:justify-around {
+        .sm\:justify-around{
             justify-content: space-around
         }
 
-        .sm\:gap-12 {
+        .sm\:gap-12{
             gap: 3rem
         }
 
-        .sm\:gap-4 {
+        .sm\:gap-4{
             gap: 1rem
         }
     }
