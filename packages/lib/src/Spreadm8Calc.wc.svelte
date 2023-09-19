@@ -41,8 +41,6 @@
             body: JSON.stringify(data),
         })
     }
-
-    let timeout;
     onMount(() => {
         fetchDataOnMount();
     });
