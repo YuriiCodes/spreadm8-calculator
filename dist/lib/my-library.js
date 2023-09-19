@@ -1711,7 +1711,8 @@ function At(u) {
   let a;
   return {
     c() {
-      a = v("div"), a.innerHTML = '<p class="text-sm">You are not subscribed to Spreadm8, please  <a href="https://www.spreadm8.com/" target="_blank" style="text-decoration: underline">click here</a> to activate your widget.</p>';
+      a = v("div"), a.innerHTML = `<p class="text-sm">You are not subscribed to Spreadm8, please <a href="https://www.spreadm8.com/" target="_blank" style="text-decoration: underline">click
+                        here</a> to activate your widget.</p>`;
     },
     m(o, i) {
       se(o, a, i);

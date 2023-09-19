@@ -1,6 +1,6 @@
 <svelte:options tag="spreadm8-calc"/>
 <script lang="ts">
-    import {onMount} from 'svelte';
+    import {onMount, onDestroy} from 'svelte';
     import 'date-input-polyfill';
     // a polyfill for the input[type="date"]
     // element to work in all browsers - that
@@ -42,6 +42,7 @@
         })
     }
 
+    let timeout;
     onMount(() => {
         fetchDataOnMount();
     });
@@ -170,7 +171,10 @@
             <h1 class="text-2xl">An error occured</h1>
             {#if statusCheckError === CORS_ERROR_CODE}
                 <div>
-                    <p class="text-sm">You are not subscribed to Spreadm8, please  <a href="https://www.spreadm8.com/" target="_blank" style="text-decoration: underline">click here</a> to activate your widget.</p>
+                    <p class="text-sm">You are not subscribed to Spreadm8, please <a href="https://www.spreadm8.com/"
+                                                                                     target="_blank"
+                                                                                     style="text-decoration: underline">click
+                        here</a> to activate your widget.</p>
                 </div>
             {:else}
                 <p class="text-sm">{statusCheckError}</p>
