@@ -102,12 +102,12 @@
         data["input_spread"] = "5";
         data["prospect_annual_flow"] = "";
         data["email_user"] = false;
-        data["user"] = "yuriypidlisnyi2020@gmail.com";
+        if (!showEmailInput) {
+            data["user"] = "testUserWithoutMail@gmail.com"
+        }
         console.log(data)
 
-        mutate(data)
-
-
+        void mutate(data)
     }
 
     let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -151,6 +151,9 @@
     export let name = "Our Results";
 
     export let showInterbankRate: boolean = true;
+
+    export let showEmailInput: boolean = true;
+    // end of props
 
 
     let background: string, text_color: string, input_background: string, button_color: string;
@@ -280,6 +283,19 @@
                             </select>
                         </div>
                     </div>
+
+                    {#if showEmailInput}
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
+                            <div class="w-full">
+                                <label for="user">Email</label>
+                                <input id="user" type="email"
+                                       class="w-full rounded-md px-3 py-2" name="user" placeholder="JohnDoe@email.com"
+                                       required style={input_style}/>
+                            </div>
+                            <!--                            A div to keep the email 1/2 of the row width-->
+                            <div class="w-full"></div>
+                        </div>
+                    {/if}
                     <div>
                         <!-- Show loading button button state-->
                         {#if !isFetching}
