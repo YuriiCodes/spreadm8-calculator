@@ -211,12 +211,12 @@
                     <div class="flex flex-col sm:flex-row sm:justify-around sm:gap-12">
                         <div class="w-full">
                             <label for="date">Select Date</label>
-                            <input id="date" type="date" class="w-full rounded-md px-3 py-2" name="date"
+                            <input id="date" type="date" class="w-full rounded-md px-3 py-2 mt-4" name="date"
                                    placeholder="Select date" required style={input_style}/>
                         </div>
                         <div class="w-full">
                             <label for="time">Select Time</label>
-                            <input id="time" type="time" class="w-full rounded-md px-3 py-2" name="time"
+                            <input id="time" type="time" class="w-full rounded-md px-3 py-2 mt-4" name="time"
                                    placeholder="Select Time" required style={input_style}/>
                         </div>
                     </div>
@@ -224,12 +224,12 @@
                         <div class="w-full">
                             <label for="sold_notional">Sell Amount</label>
                             <input id="sold_notional" type="number" step=".01"
-                                   class="w-full rounded-md px-3 py-2" name="sold_notional" placeholder="10000"
+                                   class="w-full rounded-md px-3 py-2 mt-4" name="sold_notional" placeholder="10000"
                                    required style={input_style}/>
                         </div>
                         <div class="w-full">
                             <label for="sold_ccy" style="color: {text_color}">Sell Currency</label>
-                            <select name="sold_ccy" id="sold_ccy" class="w-full rounded-md px-3 py-2" required
+                            <select name="sold_ccy" id="sold_ccy" class="w-full rounded-md px-3 py-2 mt-4" required
                                     style={input_style}>
                                 <option selected>GBP</option>
                                 <option>USD</option>
@@ -256,12 +256,12 @@
                         <div class="w-full">
                             <label for="bought_notional">Buy Amount</label>
                             <input id="bought_notional" type="number" step=".01"
-                                   class="w-full rounded-md px-3 py-2" name="bought_notional" placeholder="10000"
+                                   class="w-full rounded-md px-3 py-2 mt-4" name="bought_notional" placeholder="10000"
                                    required style={input_style}/>
                         </div>
                         <div class="w-full">
                             <label for="bought_ccy" style="color: {text_color}">Buy Currency</label>
-                            <select name="bought_ccy" id="bought_ccy" class="w-full rounded-md px-3 py-2"
+                            <select name="bought_ccy" id="bought_ccy" class="w-full rounded-md px-3 py-2 mt-4"
                                     required style={input_style}>
                                 <option selected>USD</option>
                                 <option>GBP</option>
@@ -289,7 +289,7 @@
                             <div class="w-full">
                                 <label for="user">Email</label>
                                 <input id="user" type="email"
-                                       class="w-full rounded-md px-3 py-2" name="user" placeholder="JohnDoe@email.com"
+                                       class="w-full rounded-md px-3 py-2 mt-4" name="user" placeholder="JohnDoe@email.com"
                                        required style={input_style}/>
                             </div>
                             <!--                            A div to keep the email 1/2 of the row width-->
@@ -300,8 +300,8 @@
                         <!-- Show loading button button state-->
                         {#if !isFetching}
                             <button type="submit"
-                                    class="rounded-lg bg-black px-6 py-3 mt-6"
-                                    style="background-color: {button_color}; color: {text_color}">See your
+                                    class="px-6 py-3 mt-6"
+                                    style={input_style}>See your
                                 charges
                             </button>
                         {:else}
