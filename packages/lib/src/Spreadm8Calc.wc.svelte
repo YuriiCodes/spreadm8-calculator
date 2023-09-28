@@ -68,26 +68,26 @@
         try {
             const res = await fetcher(formData);
 
-            // Check the response status here
             if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
+                // Read the error message from the response body
+                const errorRes = await res.json();
+                console.log("errorRes", errorRes)
+                throw new Error(errorRes || `HTTP error! Status: ${res.status}`);
             }
 
             const jsonRes = await res.json();
             isFetching = false;
             error = undefined;
             isIdle = false;
-            console.log("Success");
-            console.log(jsonRes);
             backendData = jsonRes;
         } catch (e) {
             isFetching = false;
-            error = e;
+            error = e.message; // Set the error state variable to the error message
             isIdle = false;
             backendData = undefined;
-            console.error("Error:", e.message); // Log the error message
         }
     }
+
 
 
     const handleFormSubmit = async (e) => {
@@ -326,18 +326,15 @@
         {:else if error}
             <div class="flex flex-col items-center">
                 <h1 class="text-2xl">Error</h1>
-                <button
-                        class="rounded-lg bg-black px-6 py-3 mt-4"
-                        style="background-color: {button_color}; color: {text_color}"
-                        on:click={(e) => resetForm()}
-                >
+                <pre class="py-3">{error}</pre> <!-- This line will display the error message -->
+                <button class="rounded-lg bg-black px-6 py-3 mt-4" style="background-color: {button_color}; color: {text_color}" on:click={(e) => resetForm()}>
                     Reset Form
                 </button>
+
             </div>
         {:else}
             <div class="flex flex-col items-center">
                 <h1 class="text-2xl">An unknown error</h1>
-                <pre>{JSON.strigify(e)}</pre>
                 <button
                         class="rounded-lg bg-black px-6 py-3 mt-4"
                         style="background-color: {button_color}; color: {text_color}"
