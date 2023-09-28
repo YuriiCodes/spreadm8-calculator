@@ -208,13 +208,13 @@
                     </div>
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                         <div class="w-full">
-                            <label for="sold_notional">I Paid</label>
+                            <label for="sold_notional">Sell Amount</label>
                             <input id="sold_notional" type="number" step=".01"
                                    class="w-full rounded-md px-3 py-2" name="sold_notional" placeholder="10000"
                                    required style={input_style}/>
                         </div>
                         <div class="w-full">
-                            <label for="sold_ccy" style="color: {text_color}">Currency</label>
+                            <label for="sold_ccy" style="color: {text_color}">Sell Currency</label>
                             <select name="sold_ccy" id="sold_ccy" class="w-full rounded-md px-3 py-2" required
                                     style={input_style}>
                                 <option selected>GBP</option>
@@ -240,13 +240,13 @@
 
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                         <div class="w-full">
-                            <label for="bought_notional">I Received</label>
+                            <label for="bought_notional">Buy Amount</label>
                             <input id="bought_notional" type="number" step=".01"
                                    class="w-full rounded-md px-3 py-2" name="bought_notional" placeholder="10000"
                                    required style={input_style}/>
                         </div>
                         <div class="w-full">
-                            <label for="bought_ccy" style="color: {text_color}">Currency</label>
+                            <label for="bought_ccy" style="color: {text_color}">Buy Currency</label>
                             <select name="bought_ccy" id="bought_ccy" class="w-full rounded-md px-3 py-2"
                                     required style={input_style}>
                                 <option selected>USD</option>
