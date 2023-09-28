@@ -122,6 +122,10 @@
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
 
+    onDestroy(() => {
+        // Cleanup listeners to avoid memory leaks
+        darkModeMediaQuery.removeEventListener('change', handleDarkModeChange);
+    });
 
     // Props
     export let light_mode_background = '#d2d0d0';
@@ -347,7 +351,20 @@
 {/if}
 
 
+
+
+<!--Remove arrows-->
+<!--  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }-->
 <style>
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
     /*
 ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
