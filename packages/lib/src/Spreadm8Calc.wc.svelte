@@ -302,13 +302,13 @@
         {:else if backendData}
             <div class="flex flex-col divide-y gap-4">
                 <div class="flex flex-col gap-2">
-                    <h1 class="text-2xl">Your Broker </h1>
+                    <h1 class="text-2xl">Your Provider </h1>
                     <p class="text-sm">Your exchange rate was {backendData.data[0].third_party_exchange_rate}</p>
 
                     <p class="text-sm">The interbank rate {backendData.data[0].ccy_pair}
                         was {backendData.data[0].mid_market_rate}.</p>
-                    <p>Your broker's markup was TODO {backendData.data[0].ccy_pair}%. </p>
-                    Your broker made {backendData.data[0].sold_ccy} {backendData.data[0].third_party_profit} on this
+                    <p>Your provider's markup was TODO {backendData.data[0].ccy_pair}%. </p>
+                    Your provider charged {backendData.data[0].sold_ccy} {backendData.data[0].third_party_profit} on this
                     trade.
 
                 </div>
