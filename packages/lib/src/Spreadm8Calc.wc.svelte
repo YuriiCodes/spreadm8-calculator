@@ -10,9 +10,10 @@
     const BACKEND_URL = "http://localhost:8000";
     const CORS_ERROR_CODE = "CORS_ERROR";
 
-    // Props
+    type modeType =  "light" | "dark" | "auto";
 
-    export let mode: "light" | "dark" | "auto" = "auto"
+    // Props
+    export let mode: modeType = "auto"
     export let light_mode_background = '#d2d0d0';
     export let dark_mode_background = "#1f2937";
 
@@ -41,6 +42,13 @@
     export let showEmailInput: boolean = true;
     // end of props
 
+
+    function calculateIsDarkMode(mode: modeType) {
+        if (mode === 'dark') return true;
+        if (mode === 'light') return false;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    $: isDarkMode = calculateIsDarkMode(mode);
 
     // Function to fetch data on component mount
     function fetchDataOnMount() {
@@ -141,8 +149,8 @@
         void mutate(data)
     }
 
-    //   window.matchMedia('(prefers-color-scheme: dark)').matches;
-    let isDarkMode = mode === "dark" ? true : mode=== "light" ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+
 
     // Function to handle changes in dark mode preference
     const handleDarkModeChange = (event) => {
