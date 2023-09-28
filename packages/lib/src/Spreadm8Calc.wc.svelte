@@ -37,9 +37,9 @@
 
     export let name = "Our Results";
 
-    export let show_interbank_rate: string = "true";
+    export let show_interbank_rate: string = "false";
 
-    export let show_email_input: string = "true";
+    export let show_email_input: string = "false";
     // end of props
 
     $: shouldShowEmail = show_email_input === "true";
