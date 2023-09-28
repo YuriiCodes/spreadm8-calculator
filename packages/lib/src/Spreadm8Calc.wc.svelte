@@ -159,6 +159,9 @@
     border-radius: ${input_border_radius}px;
     `
 </script>
+<svelte:head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</svelte:head>
 
 
 <!-- Render an initial error message if an error occurred during the initial fetch -->
@@ -356,7 +359,15 @@
     -webkit-appearance: none;
     margin: 0;
   }-->
+
+
+<!--Inter style * {
+        font-family: 'Inter', sans-serif;
+    }-->
 <style>
+    * {
+        font-family: 'Inter', sans-serif;
+    }
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
