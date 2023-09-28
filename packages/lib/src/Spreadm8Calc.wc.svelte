@@ -147,6 +147,7 @@
     export let input_border_radius = '0.5rem';
 
     export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "none"
+    export let opactiy: number = 100;
 
     let background: string, text_color: string, input_background: string, button_color: string;
     $: background = isDarkMode ? dark_mode_background : light_mode_background;
@@ -170,6 +171,7 @@
         background-color: ${background};
         border-radius: ${border_radius};
         color: ${text_color};
+        opacity: ${opactiy}%!important;
 `}>
 
         <div class="flex flex-col items-center gap-4">
@@ -178,6 +180,7 @@
                 <div>
                     <p class="text-sm">You are not subscribed to Spreadm8, please <a href="https://www.spreadm8.com/"
                                                                                      target="_blank"
+                                                                                     rel="noreferrer"
                                                                                      style="text-decoration: underline">click
                         here</a> to activate your widget.</p>
                 </div>
@@ -191,6 +194,7 @@
         background-color: ${background};
         border-radius: ${border_radius};
         color: ${text_color};
+        opacity: ${opactiy}%!important;
 `}>
 
         <!--    -->

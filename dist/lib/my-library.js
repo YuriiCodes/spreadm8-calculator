@@ -1242,6 +1242,7 @@ function xt(u) {
       u[0]};
         color: ${/*text_color*/
       u[2]};
+        opacity: 1,
 `);
     },
     m(r, l) {
@@ -1258,6 +1259,7 @@ function xt(u) {
       r[0]};
         color: ${/*text_color*/
       r[2]};
+        opacity: 1,
 `) && y(a, "style", i);
     },
     d(r) {
@@ -1434,9 +1436,9 @@ function St(u) {
   ), ge, te, ae, fe, le, Me;
   return {
     c() {
-      a = g("div"), t = g("div"), i = g("h1"), i.textContent = "Your Broker", e = Z(), o = g("p"), n = B("Your exchange rate was "), l = B(r), s = Z(), d = g("p"), f = B("The interbank rate "), h = B(c), _ = B(`
-                        was `), v = B(S), C = B("."), E = Z(), R = g("p"), L = B("Your broker's markup was TODO "), N = B(M), b = B("%."), m = B(`
-                    Your broker made `), x = B(k), T = Z(), j = B(O), Y = B(` on this
+      a = g("div"), t = g("div"), i = g("h1"), i.textContent = "Your Provider", e = Z(), o = g("p"), n = B("Your exchange rate was "), l = B(r), s = Z(), d = g("p"), f = B("The interbank rate "), h = B(c), _ = B(`
+                        was `), v = B(S), C = B("."), E = Z(), R = g("p"), L = B("Your provider's markup was TODO "), N = B(M), b = B("%."), m = B(`
+                    Your provider charged `), x = B(k), T = Z(), j = B(O), Y = B(` on this
                     trade.`), K = Z(), I = g("div"), J = g("h1"), J.textContent = "Integritas", z = Z(), D = g("p"), U = B("Our exchange rate was "), Q = B(F), $ = Z(), X = g("p"), ee = B(`We would've saved
                         you `), V = B(de), re = Z(), ge = B(ce), te = Z(), ae = g("button"), fe = B("Calculate again"), y(i, "class", "text-2xl"), y(o, "class", "text-sm"), y(d, "class", "text-sm"), y(t, "class", "flex flex-col gap-2"), y(J, "class", "text-2xl mt-4"), y(D, "class", "text-sm"), y(X, "class", "text-sm"), y(I, "class", "flex flex-col gap-2"), y(a, "class", "flex flex-col divide-y gap-4"), y(ae, "class", "rounded-lg bg-black px-6 py-3 mt-4"), q(
         ae,
@@ -1722,7 +1724,7 @@ function Tt(u) {
   let a;
   return {
     c() {
-      a = g("div"), a.innerHTML = `<p class="text-sm">You are not subscribed to Spreadm8, please <a href="https://www.spreadm8.com/" target="_blank" style="text-decoration: underline">click
+      a = g("div"), a.innerHTML = `<p class="text-sm">You are not subscribed to Spreadm8, please <a href="https://www.spreadm8.com/" target="_blank" rel="noreferrer" style="text-decoration: underline">click
                         here</a> to activate your widget.</p>`;
     },
     m(t, i) {
