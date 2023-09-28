@@ -37,12 +37,13 @@
 
     export let name = "Our Results";
 
-    export let show_interbank_rate: boolean = true;
+    export let show_interbank_rate: string = "true";
 
     export let show_email_input: string = "true";
     // end of props
 
     $: shouldShowEmail = show_email_input === "true";
+    $: shouldShowInterbankRate = show_interbank_rate === "true";
 
 
     function calculateIsDarkMode(mode: modeType) {
@@ -344,7 +345,7 @@
                     <h1 class="text-2xl">Your Provider </h1>
                     <p class="text-sm">Your exchange rate was {backendData.data[0].third_party_exchange_rate}</p>
 
-                    {#if show_interbank_rate}
+                    {#if shouldShowInterbankRate}
                         <p class="text-sm">The interbank rate {backendData.data[0].ccy_pair}
                             was {backendData.data[0].mid_market_rate}.</p>
                     {/if}
