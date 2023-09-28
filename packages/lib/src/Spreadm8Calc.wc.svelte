@@ -89,7 +89,6 @@
     }
 
 
-
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -147,7 +146,12 @@
     export let input_border_radius = '0.5rem';
 
     export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "none"
-    export let opactiy: number = 100;
+    export let opacity: number = 100;
+
+    export let name = "Our Results";
+
+    export let showInterbankRate: boolean = true;
+
 
     let background: string, text_color: string, input_background: string, button_color: string;
     $: background = isDarkMode ? dark_mode_background : light_mode_background;
@@ -171,7 +175,7 @@
         background-color: ${background};
         border-radius: ${border_radius};
         color: ${text_color};
-        opacity: ${opactiy}%!important;
+        opacity: ${opacity}%!important;
 `}>
 
         <div class="flex flex-col items-center gap-4">
@@ -194,7 +198,7 @@
         background-color: ${background};
         border-radius: ${border_radius};
         color: ${text_color};
-        opacity: ${opactiy}%!important;
+        opacity: ${opacity}%!important;
 `}>
 
         <!--    -->
@@ -309,15 +313,19 @@
                     <h1 class="text-2xl">Your Provider </h1>
                     <p class="text-sm">Your exchange rate was {backendData.data[0].third_party_exchange_rate}</p>
 
-                    <p class="text-sm">The interbank rate {backendData.data[0].ccy_pair}
-                        was {backendData.data[0].mid_market_rate}.</p>
-                    <p>Your provider's markup was TODO {backendData.data[0].ccy_pair}%. </p>
-                    Your provider charged {backendData.data[0].sold_ccy} {backendData.data[0].third_party_profit} on this
-                    trade.
+                    {#if showInterbankRate}
+                        <p class="text-sm">The interbank rate {backendData.data[0].ccy_pair}
+                            was {backendData.data[0].mid_market_rate}.</p>
+                    {/if}
+
+                    <p class="text-sm">Your provider's markup was TODO {backendData.data[0].ccy_pair}%. </p>
+                    <p class="text-sm">Your provider
+                        charged {backendData.data[0].sold_ccy} {backendData.data[0].third_party_profit} on this
+                        trade.</p>
 
                 </div>
                 <div class="flex flex-col gap-2">
-                    <h1 class="text-2xl mt-4">Integritas</h1>
+                    <h1 class="text-2xl mt-4">{name}</h1>
                     <p class="text-sm">Our exchange rate was {backendData.data[0].integritas_rate}</p>
                     <p class="text-sm">We would've saved
                         you {backendData.data[0].sold_ccy} {backendData.data[0].integritas_savings}</p>
@@ -334,7 +342,8 @@
             <div class="flex flex-col items-center">
                 <h1 class="text-2xl">Error</h1>
                 <pre class="py-3">{error}</pre> <!-- This line will display the error message -->
-                <button class="rounded-lg bg-black px-6 py-3 mt-4" style="background-color: {button_color}; color: {text_color}" on:click={(e) => resetForm()}>
+                <button class="rounded-lg bg-black px-6 py-3 mt-4"
+                        style="background-color: {button_color}; color: {text_color}" on:click={(e) => resetForm()}>
                     Reset Form
                 </button>
 
@@ -355,8 +364,6 @@
 {/if}
 
 
-
-
 <!--Remove arrows-->
 <!--  input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
@@ -372,11 +379,13 @@
     * {
         font-family: 'Inter', sans-serif;
     }
+
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
+
     /*
 ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
