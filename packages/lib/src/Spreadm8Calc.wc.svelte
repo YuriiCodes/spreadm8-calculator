@@ -10,6 +10,37 @@
     const BACKEND_URL = "http://localhost:8000";
     const CORS_ERROR_CODE = "CORS_ERROR";
 
+    // Props
+
+    export let mode: "light" | "dark" | "auto" = "auto"
+    export let light_mode_background = '#d2d0d0';
+    export let dark_mode_background = "#1f2937";
+
+    export let light_mode_text_color = '#1f2937';
+    export let dark_mode_text_color = '#f9fafb';
+
+
+    export let dark_mode_input_background = '#374151';
+    export let light_mode_input_background = '#f9fafb';
+
+
+    export let dark_mode_button_color = '#374151';
+    export let light_mode_button_color = '#f9fafb';
+
+    export let border_radius = '0.5rem';
+
+    export let input_border_radius = '0.5rem';
+
+    export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "none"
+    export let opacity: number = 100;
+
+    export let name = "Our Results";
+
+    export let showInterbankRate: boolean = true;
+
+    export let showEmailInput: boolean = true;
+    // end of props
+
 
     // Function to fetch data on component mount
     function fetchDataOnMount() {
@@ -110,7 +141,8 @@
         void mutate(data)
     }
 
-    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    //   window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let isDarkMode = mode === "dark" ? true : mode=== "light" ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     // Function to handle changes in dark mode preference
     const handleDarkModeChange = (event) => {
@@ -126,34 +158,7 @@
         darkModeMediaQuery.removeEventListener('change', handleDarkModeChange);
     });
 
-    // Props
-    export let light_mode_background = '#d2d0d0';
-    export let dark_mode_background = "#1f2937";
 
-    export let light_mode_text_color = '#1f2937';
-    export let dark_mode_text_color = '#f9fafb';
-
-
-    export let dark_mode_input_background = '#374151';
-    export let light_mode_input_background = '#f9fafb';
-
-
-    export let dark_mode_button_color = '#374151';
-    export let light_mode_button_color = '#f9fafb';
-
-    export let border_radius = '0.5rem';
-
-    export let input_border_radius = '0.5rem';
-
-    export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "none"
-    export let opacity: number = 100;
-
-    export let name = "Our Results";
-
-    export let showInterbankRate: boolean = true;
-
-    export let showEmailInput: boolean = true;
-    // end of props
 
 
     let background: string, text_color: string, input_background: string, button_color: string;
