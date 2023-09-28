@@ -37,10 +37,12 @@
 
     export let name = "Our Results";
 
-    export let showInterbankRate: boolean = true;
+    export let show_interbank_rate: boolean = true;
 
-    export let showEmailInput: boolean = true;
+    export let show_email_input: string = "true";
     // end of props
+
+    $: shouldShowEmail = show_email_input === "true";
 
 
     function calculateIsDarkMode(mode: modeType) {
@@ -141,7 +143,7 @@
         data["input_spread"] = "5";
         data["prospect_annual_flow"] = "";
         data["email_user"] = false;
-        if (!showEmailInput) {
+        if (!shouldShowEmail) {
             data["user"] = "testUserWithoutMail@gmail.com"
         }
         console.log(data)
@@ -297,7 +299,7 @@
                         </div>
                     </div>
 
-                    {#if showEmailInput}
+                    {#if shouldShowEmail}
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                             <div class="w-full">
                                 <label for="user">Email</label>
@@ -342,7 +344,7 @@
                     <h1 class="text-2xl">Your Provider </h1>
                     <p class="text-sm">Your exchange rate was {backendData.data[0].third_party_exchange_rate}</p>
 
-                    {#if showInterbankRate}
+                    {#if show_interbank_rate}
                         <p class="text-sm">The interbank rate {backendData.data[0].ccy_pair}
                             was {backendData.data[0].mid_market_rate}.</p>
                     {/if}
