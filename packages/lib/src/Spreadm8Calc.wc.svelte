@@ -346,7 +346,7 @@
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
                                 <div class="w-full">
                                     <button disabled type="button"
-                                            class="font-medium text-sm px-6 py-3 text-center inline-flex items-center"
+                                            class="px-6 py-3 mt-6 text-center inline-flex items-center justify-center"
                                             style={button_style}>
                                         <svg aria-hidden="true" role="status"
                                              class="inline w-4 h-4 mr-3 text-white animate-spin"
@@ -359,8 +359,6 @@
                                         Loading...
                                     </button>
                                 </div>
-                                <!--A div to keep the email 1/2 of the row width-->
-                                <!--                                <div class="w-full"></div>-->
                             </div>
 
                         {/if}
@@ -372,25 +370,25 @@
             <div class="flex flex-col divide-y gap-4" style="height: 95%;">
                 <div class="flex flex-col gap-2">
                     <h1 class="text-2xl">Your Provider </h1>
-                    <p class="text-sm">Your exchange rate was {backendData.data[0].third_party_exchange_rate}</p>
+                    <p class="text-sm">Your exchange rate
+                        was {backendData.data[0].third_party_exchange_rate.toFixed(4)}</p>
 
                     {#if shouldShowInterbankRate}
                         <p class="text-sm">The interbank rate {backendData.data[0].ccy_pair}
-                            was {backendData.data[0].mid_market_rate}.</p>
+                            was {backendData.data[0].mid_market_rate.toFixed(4)}</p>
                     {/if}
 
-                    <p class="text-sm">Your provider's markup was {backendData.data[0].third_party_spread}%. </p>
+                    <p class="text-sm">Your provider's markup was {backendData.data[0].third_party_spread}%</p>
                     <p class="text-sm">Your provider
-                        charged {backendData.data[0].sold_ccy} {backendData.data[0].third_party_profit} on this
-                        trade.</p>
-
+                        charged {backendData.data[0].sold_ccy} {backendData.data[0].third_party_profit.toFixed(4)} on
+                        this trade</p>
                 </div>
                 <div class="flex flex-col gap-2">
                     <h1 class="text-2xl mt-4">{name}</h1>
-                    <p class="text-sm">Our exchange rate was {backendData.data[0].integritas_rate}</p>
+                    <p class="text-sm">Our exchange rate was {backendData.data[0].integritas_rate.toFixed(4)}</p>
                     {#if backendData.data[0].integritas_savings > 50}
                         <p class="text-sm">We would've saved
-                            you {backendData.data[0].sold_ccy} {backendData.data[0].integritas_savings}</p>
+                            you {backendData.data[0].sold_ccy} {backendData.data[0].integritas_savings.toFixed(4)}</p>
                     {/if}
                 </div>
             </div>
@@ -447,6 +445,7 @@
     .pb-6 {
         padding-bottom: 1.5rem; /* 24px */
     }
+
     .h-full {
         height: 100%;
     }
@@ -1040,6 +1039,9 @@
 
     .items-center {
         align-items: center
+    }
+    .justify-center {
+        justify-content: center
     }
 
     .gap-2 {
