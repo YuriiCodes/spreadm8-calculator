@@ -18,7 +18,7 @@
     export let height: string = "100%";
     export let width: string = "100%";
 
-    export let light_mode_background = '#d2d0d0';
+    export let light_mode_background = '#ffffff';
     export let dark_mode_background = "#1f2937";
 
     export let light_mode_text_color = '#1f2937';
@@ -32,18 +32,21 @@
     export let dark_mode_button_color = '#374151';
     export let light_mode_button_color = '#f9fafb';
 
-    export let border_radius = '0.5rem';
+    export let light_mode_border_color = '#D1D5DB';
+    export let dark_mode_border_color = '#374151';
 
-    export let input_border_radius = '0.5rem';
+    export let border_radius = '15px';
 
-    export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "none"
+    export let input_border_radius = '5';
+
+    export let shadow: "none" | "sm" | "md" | "lg" | "xl" | "2xl" = "md"
     export let opacity: number = 100;
 
     export let name = "Our Results";
 
     export let show_interbank_rate: string = "false";
 
-    export let show_email_input: string = "false";
+    export let show_email_input: string = "true";
     // end of props
 
     $: shouldShowEmail = show_email_input === "true";
@@ -177,16 +180,21 @@
     $: background = isDarkMode ? dark_mode_background : light_mode_background;
     $: text_color = isDarkMode ? dark_mode_text_color : light_mode_text_color;
     $: input_background = isDarkMode ? dark_mode_input_background : light_mode_input_background;
+    $: input_border_color = isDarkMode ? dark_mode_border_color : light_mode_border_color;
     $: button_color = isDarkMode ? dark_mode_button_color : light_mode_button_color;
     $: input_style = `
     background-color: ${input_background};
     color: ${text_color};
+    border-width: 1px;
+    border-color: ${input_border_color};
     border-radius: ${input_border_radius}px;
     `
     $: button_style = `
     width: 100%;
     background-color: ${button_color};
     color: ${text_color};
+    border-width: 1px;
+    border-color: ${input_border_color};
     border-radius: ${input_border_radius}px;
     `
 </script>
@@ -223,7 +231,7 @@
         </div>
     </div>
 {:else}
-    <div class={`p-4 shadow-${shadow}`} style={`
+    <div class={`p-12 shadow-${shadow}`} style={`
         background-color: ${background};
         border-radius: ${border_radius};
         color: ${text_color};
@@ -320,7 +328,7 @@
                                        required style={input_style}/>
                             </div>
                             <!--                            A div to keep the email 1/2 of the row width-->
-                            <div class="w-full"></div>
+<!--                            <div class="w-full"></div>-->
                         </div>
                     {/if}
                     <div>
@@ -335,8 +343,6 @@
                                         charges
                                     </button>
                                 </div>
-                                <!--A div to keep the email 1/2 of the row width-->
-                                <div class="w-full"></div>
                             </div>
                         {:else}
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
@@ -356,7 +362,7 @@
                                     </button>
                                 </div>
                                 <!--A div to keep the email 1/2 of the row width-->
-                                <div class="w-full"></div>
+<!--                                <div class="w-full"></div>-->
                             </div>
 
                         {/if}
@@ -1054,6 +1060,10 @@
 
     .p-4 {
         padding: 1rem
+    }
+
+    .p-12 {
+        padding: 3rem;
     }
 
     .px-3 {
