@@ -1,24 +1,27 @@
-# 🌐 svelte-web-components-template
+# 🌐 svelte-web-component-integritas
 
-> A base template for building a shareable web components library using [Vite](https://vitejs.dev), [Svelte](https://svelte.dev) and [TypeScript](https://www.typescriptlang.org).
+> A embeddable web component for the integritas calculator
 
-This templates generates vanilla [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) than can be used with [plain HTML](https://www.webcomponents.org/introduction#how-do-i-use-a-web-component-) or within any major frameworks, such as React, Angular, Vue or Svelte (see [compatibility](https://custom-elements-everywhere.com/)).
 
-## How to use this template
+## How to use
 
-You can directly create a new GitHub repo from this template by selecting the **Use this template** button on GitHub.
+The component code is located inside the `packages/lib/src/Spreadm8Calc.wc.svelte` file. You can edit it to change the component's behavior.
 
-You can also clone it locally with the following commands:
+You can modify it and then see the changes locally (without building) by using the 
 
 ```bash
-npx degit sinedied/svelte-web-components-template#main my-component-lib
-cd my-component-lib
-npm install
+npm run start
 ```
+command.
 
-Your components source code lives in `lib/` folder. Only components with the `.wc.svelte` extension will be exported as web components and available in your library. This means that you can also use regular Svelte components with the `.svelte` extension as child components for your implementation details.
+Then build it using
+```bash
+npm run build
+```
+That will produce a built component in the `dist/lib/spreadm8-widget.js` file. You can then embed that JS code anywhere and use the webcomponent in HTML by just simply rendering the tag `<spreadm8-calc></spreadm8-calc>`.
 
-You can add additional components by adding them to the `lib` folder and editing `lib/index.js`.
+All the polyfills are already included!
+Styles are written inline and mostly automatically generated via [TailwindCSS play](https://play.tailwindcss.com/)(I didn't find a way to add the entire Tailwind Build to that project , so we have to manually build the styles at playground & then copy them 🥲)
 
 ## Testing your components
 
