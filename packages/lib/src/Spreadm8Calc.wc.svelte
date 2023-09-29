@@ -149,7 +149,7 @@
             data[key] = value;
         }
         data["prospect"] = "";
-        data["input_spread"] = "5";
+        data["input_spread"] = "0.2";
         data["prospect_annual_flow"] = "";
         data["email_user"] = false;
         if (!shouldShowEmail) {
@@ -328,7 +328,7 @@
                                        required style={input_style}/>
                             </div>
                             <!--                            A div to keep the email 1/2 of the row width-->
-<!--                            <div class="w-full"></div>-->
+                            <!--                            <div class="w-full"></div>-->
                         </div>
                     {/if}
                     <div>
@@ -338,9 +338,7 @@
                                 <div class="w-full">
                                     <button type="submit"
                                             class="px-6 py-3 mt-6"
-                                            style={button_style}
-                                    >See your
-                                        charges
+                                            style={button_style}>See your charges
                                     </button>
                                 </div>
                             </div>
@@ -362,7 +360,7 @@
                                     </button>
                                 </div>
                                 <!--A div to keep the email 1/2 of the row width-->
-<!--                                <div class="w-full"></div>-->
+                                <!--                                <div class="w-full"></div>-->
                             </div>
 
                         {/if}
@@ -371,7 +369,7 @@
                 </div>
             </form>
         {:else if backendData}
-            <div class="flex flex-col divide-y gap-4">
+            <div class="flex flex-col divide-y gap-4" style="height: 95%;">
                 <div class="flex flex-col gap-2">
                     <h1 class="text-2xl">Your Provider </h1>
                     <p class="text-sm">Your exchange rate was {backendData.data[0].third_party_exchange_rate}</p>
@@ -381,7 +379,7 @@
                             was {backendData.data[0].mid_market_rate}.</p>
                     {/if}
 
-                    <p class="text-sm">Your provider's markup was TODO {backendData.data[0].ccy_pair}%. </p>
+                    <p class="text-sm">Your provider's markup was {backendData.data[0].third_party_spread}%. </p>
                     <p class="text-sm">Your provider
                         charged {backendData.data[0].sold_ccy} {backendData.data[0].third_party_profit} on this
                         trade.</p>
@@ -390,25 +388,28 @@
                 <div class="flex flex-col gap-2">
                     <h1 class="text-2xl mt-4">{name}</h1>
                     <p class="text-sm">Our exchange rate was {backendData.data[0].integritas_rate}</p>
-                    <p class="text-sm">We would've saved
-                        you {backendData.data[0].sold_ccy} {backendData.data[0].integritas_savings}</p>
+                    {#if backendData.data[0].integritas_savings > 50}
+                        <p class="text-sm">We would've saved
+                            you {backendData.data[0].sold_ccy} {backendData.data[0].integritas_savings}</p>
+                    {/if}
                 </div>
             </div>
-            <button
-                    class="rounded-lg bg-black px-6 py-3 mt-4"
-                    style="background-color: {button_color}; color: {text_color}"
-                    on:click={(e) => resetForm()}
-            >
-                Calculate again
-            </button>
-        {:else if error}
-            <div class="flex flex-col items-center">
-                <h1 class="text-2xl">Error</h1>
-                <pre class="py-3">{error}</pre> <!-- This line will display the error message -->
-                <button class="rounded-lg bg-black px-6 py-3 mt-4"
-                        style="background-color: {button_color}; color: {text_color}" on:click={(e) => resetForm()}>
-                    Reset Form
+            <div class="w-full">
+                <button class="px-6 py-3"
+                        on:click={() => resetForm()}
+                        style={`${button_style} margin-bottom: 1.5rem;`}>Calculate again
                 </button>
+            </div>
+        {:else if error}
+            <div class="flex flex-col items-center h-full">
+                <h1 class="text-2xl">Error</h1>
+                <p class="text-sm py-3">{error}</p> <!-- This line will display the error message -->
+                <div class="w-full mt-auto">
+                    <button class="px-6 py-3 mt-6"
+                            on:click={(e) => resetForm()}
+                            style={button_style}>Reset Form
+                    </button>
+                </div>
 
             </div>
         {:else}
@@ -441,6 +442,13 @@
 <style>
     * {
         font-family: 'Inter', sans-serif;
+    }
+
+    .pb-6 {
+        padding-bottom: 1.5rem; /* 24px */
+    }
+    .h-full {
+        height: 100%;
     }
 
     input[type="number"]::-webkit-inner-spin-button,
@@ -502,11 +510,14 @@
         /* 6 */
     }
 
+    .mt-auto {
+        margin-top: auto;
+    }
+
     /*
     1. Remove the margin in all browsers.
     2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
     */
-
     body {
         margin: 0;
         /* 1 */
