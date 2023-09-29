@@ -63,14 +63,14 @@ function pe(a) {
     r[e.name] = e.value;
   return r;
 }
-let Pt;
-function Ft(a) {
-  Pt = a;
+let Ft;
+function Pt(a) {
+  Ft = a;
 }
 function ae() {
-  if (!Pt)
+  if (!Ft)
     throw new Error("Function called outside component initialization");
-  return Pt;
+  return Ft;
 }
 function he(a) {
   ae().$$.on_mount.push(a);
@@ -91,17 +91,17 @@ let jt = 0;
 function tt() {
   if (jt !== 0)
     return;
-  const a = Pt;
+  const a = Ft;
   do {
     try {
       for (; jt < Nt.length; ) {
         const r = Nt[jt];
-        jt++, Ft(r), be(r.$$);
+        jt++, Pt(r), be(r.$$);
       }
     } catch (r) {
       throw Nt.length = 0, jt = 0, r;
     }
-    for (Ft(null), Nt.length = 0, jt = 0; $t.length; )
+    for (Pt(null), Nt.length = 0, jt = 0; $t.length; )
       $t.pop()();
     for (let r = 0; r < Ht.length; r += 1) {
       const e = Ht[r];
@@ -111,7 +111,7 @@ function tt() {
   } while (Nt.length);
   for (; te.length; )
     te.pop()();
-  Zt = !1, Bt.clear(), Ft(a);
+  Zt = !1, Bt.clear(), Pt(a);
 }
 function be(a) {
   if (a.fragment !== null) {
@@ -139,8 +139,8 @@ function ke(a, r) {
   a.$$.dirty[0] === -1 && (Nt.push(a), ye(), a.$$.dirty.fill(0)), a.$$.dirty[r / 31 | 0] |= 1 << r % 31;
 }
 function Me(a, r, e, l, t, o, n, i = [-1]) {
-  const u = Pt;
-  Ft(a);
+  const u = Ft;
+  Pt(a);
   const s = a.$$ = {
     fragment: null,
     ctx: [],
@@ -175,7 +175,7 @@ function Me(a, r, e, l, t, o, n, i = [-1]) {
       s.fragment && s.fragment.c();
     r.intro && ve(a.$$.fragment), we(a, r.target, r.anchor, r.customElement), tt();
   }
-  Ft(u);
+  Pt(u);
 }
 let le;
 typeof HTMLElement == "function" && (le = class extends HTMLElement {
@@ -299,11 +299,11 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       };
     }, function(e, l, t) {
       var o = t(2), n = t(8), i = t(56), u = t(6), s = "prototype", c = function(f, d, h) {
-        var y, S, v, k = f & c.F, E = f & c.G, P = f & c.S, j = f & c.P, C = f & c.B, N = f & c.W, g = E ? n : n[d] || (n[d] = {}), _ = g[s], M = E ? o : P ? o[d] : (o[d] || {})[s];
+        var y, S, v, k = f & c.F, E = f & c.G, F = f & c.S, j = f & c.P, C = f & c.B, N = f & c.W, g = E ? n : n[d] || (n[d] = {}), _ = g[s], M = E ? o : F ? o[d] : (o[d] || {})[s];
         E && (h = d);
         for (y in h)
           S = !k && M && M[y] !== void 0, S && y in g || (v = S ? M[y] : h[y], g[y] = E && typeof M[y] != "function" ? h[y] : C && S ? i(v, o) : N && M[y] == v ? function(w) {
-            var T = function(D, F, R) {
+            var T = function(D, P, R) {
               if (this instanceof w) {
                 switch (arguments.length) {
                   case 0:
@@ -311,9 +311,9 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
                   case 1:
                     return new w(D);
                   case 2:
-                    return new w(D, F);
+                    return new w(D, P);
                 }
-                return new w(D, F, R);
+                return new w(D, P, R);
               }
               return w.apply(this, arguments);
             };
@@ -438,12 +438,12 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         } }).a != 7;
       });
     }, function(e, l, t) {
-      var o = t(19), n = t(10), i = t(39), u = t(6), s = t(3), c = t(18), f = t(61), d = t(21), h = t(67), y = t(7)("iterator"), S = !([].keys && "next" in [].keys()), v = "@@iterator", k = "keys", E = "values", P = function() {
+      var o = t(19), n = t(10), i = t(39), u = t(6), s = t(3), c = t(18), f = t(61), d = t(21), h = t(67), y = t(7)("iterator"), S = !([].keys && "next" in [].keys()), v = "@@iterator", k = "keys", E = "values", F = function() {
         return this;
       };
       e.exports = function(j, C, N, g, _, M, w) {
         f(N, C, g);
-        var T, D, F, R = function($) {
+        var T, D, P, R = function($) {
           if (!S && $ in U)
             return U[$];
           switch ($) {
@@ -460,9 +460,9 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
             return new N(this, $);
           };
         }, K = C + " Iterator", I = _ == E, Y = !1, U = j.prototype, V = U[y] || U[v] || _ && U[_], z = V || R(_), B = _ ? I ? R("entries") : z : void 0, st = C == "Array" && U.entries || V;
-        if (st && (F = h(st.call(new j())), F !== Object.prototype && (d(F, K, !0), o || s(F, y) || u(F, y, P))), I && V && V.name !== E && (Y = !0, z = function() {
+        if (st && (P = h(st.call(new j())), P !== Object.prototype && (d(P, K, !0), o || s(P, y) || u(P, y, F))), I && V && V.name !== E && (Y = !0, z = function() {
           return V.call(this);
-        }), o && !w || !S && !Y && U[y] || u(U, y, z), c[C] = z, c[K] = P, _)
+        }), o && !w || !S && !Y && U[y] || u(U, y, z), c[C] = z, c[K] = F, _)
           if (T = { values: I ? z : R(E), keys: M ? z : R(k), entries: B }, w)
             for (D in T)
               D in U || i(U, D, T[D]);
@@ -538,13 +538,13 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       Object.defineProperty(l, "__esModule", { value: !0 });
       var c = t(48), f = o(c), d = function() {
         var h = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZWN]|'[^']*'|'[^']*'/g, y = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g, S = /[^-+\dA-Z]/g;
-        return function(v, k, E, P) {
+        return function(v, k, E, F) {
           if (arguments.length !== 1 || s(v) !== "string" || /\d/.test(v) || (k = v, v = void 0), v = v || new Date(), v instanceof Date || (v = new Date(v)), isNaN(v))
             throw TypeError("Invalid date");
           k = String(d.masks[k] || k || d.masks.default);
           var j = k.slice(0, 4);
-          j !== "UTC:" && j !== "GMT:" || (k = k.slice(4), E = !0, j === "GMT:" && (P = !0));
-          var C = E ? "getUTC" : "get", N = v[C + "Date"](), g = v[C + "Day"](), _ = v[C + "Month"](), M = v[C + "FullYear"](), w = v[C + "Hours"](), T = v[C + "Minutes"](), D = v[C + "Seconds"](), F = v[C + "Milliseconds"](), R = E ? 0 : v.getTimezoneOffset(), K = i(v), I = u(v), Y = { d: N, dd: n(N), ddd: d.i18n.dayNames[g], dddd: d.i18n.dayNames[g + 7], m: _ + 1, mm: n(_ + 1), mmm: d.i18n.monthNames[_], mmmm: d.i18n.monthNames[_ + 12], yy: String(M).slice(2), yyyy: M, h: w % 12 || 12, hh: n(w % 12 || 12), H: w, HH: n(w), M: T, MM: n(T), s: D, ss: n(D), l: n(F, 3), L: n(Math.round(F / 10)), t: w < 12 ? "a" : "p", tt: w < 12 ? "am" : "pm", T: w < 12 ? "A" : "P", TT: w < 12 ? "AM" : "PM", Z: P ? "GMT" : E ? "UTC" : (String(v).match(y) || [""]).pop().replace(S, ""), o: (R > 0 ? "-" : "+") + n(100 * Math.floor(Math.abs(R) / 60) + Math.abs(R) % 60, 4), S: ["th", "st", "nd", "rd"][N % 10 > 3 ? 0 : (N % 100 - N % 10 != 10) * N % 10], W: K, N: I };
+          j !== "UTC:" && j !== "GMT:" || (k = k.slice(4), E = !0, j === "GMT:" && (F = !0));
+          var C = E ? "getUTC" : "get", N = v[C + "Date"](), g = v[C + "Day"](), _ = v[C + "Month"](), M = v[C + "FullYear"](), w = v[C + "Hours"](), T = v[C + "Minutes"](), D = v[C + "Seconds"](), P = v[C + "Milliseconds"](), R = E ? 0 : v.getTimezoneOffset(), K = i(v), I = u(v), Y = { d: N, dd: n(N), ddd: d.i18n.dayNames[g], dddd: d.i18n.dayNames[g + 7], m: _ + 1, mm: n(_ + 1), mmm: d.i18n.monthNames[_], mmmm: d.i18n.monthNames[_ + 12], yy: String(M).slice(2), yyyy: M, h: w % 12 || 12, hh: n(w % 12 || 12), H: w, HH: n(w), M: T, MM: n(T), s: D, ss: n(D), l: n(P, 3), L: n(Math.round(P / 10)), t: w < 12 ? "a" : "p", tt: w < 12 ? "am" : "pm", T: w < 12 ? "A" : "P", TT: w < 12 ? "AM" : "PM", Z: F ? "GMT" : E ? "UTC" : (String(v).match(y) || [""]).pop().replace(S, ""), o: (R > 0 ? "-" : "+") + n(100 * Math.floor(Math.abs(R) / 60) + Math.abs(R) % 60, 4), S: ["th", "st", "nd", "rd"][N % 10 > 3 ? 0 : (N % 100 - N % 10 != 10) * N % 10], W: K, N: I };
           return k.replace(h, function(U) {
             return U in Y ? Y[U] : U.slice(1, U.length - 1);
           });
@@ -552,14 +552,14 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       }();
       d.masks = { default: "ddd mmm dd yyyy HH:MM:ss", shortDate: "m/d/yy", mediumDate: "mmm d, yyyy", longDate: "mmmm d, yyyy", fullDate: "dddd, mmmm d, yyyy", shortTime: "h:MM TT", mediumTime: "h:MM:ss TT", longTime: "h:MM:ss TT Z", isoDate: "yyyy-mm-dd", isoTime: "HH:MM:ss", isoDateTime: "yyyy-mm-dd'T'HH:MM:sso", isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'", expiresHeaderFormat: "ddd, dd mmm yyyy HH:MM:ss Z" }, d.i18n = { dayNames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] }, l.default = d;
     }, function(e, l, t) {
-      function o(P) {
-        return P && P.__esModule ? P : { default: P };
+      function o(F) {
+        return F && F.__esModule ? F : { default: F };
       }
       Object.defineProperty(l, "__esModule", { value: !0 });
       var n = t(44), i = o(n), u = t(28), s = o(u), c = t(29), f = o(c), d = t(43), h = o(d), y = t(42), S = o(y), v = t(40), k = o(v), E = function() {
-        function P(j) {
+        function F(j) {
           var C = this;
-          (0, s.default)(this, P), this.element = j, this.element.setAttribute("data-has-picker", ""), this.locale = this.element.getAttribute("lang") || document.body.getAttribute("lang") || "en", this.format = this.element.getAttribute("date-format") || document.body.getAttribute("date-format") || this.element.getAttribute("data-date-format") || document.body.getAttribute("data-date-format") || "yyyy-mm-dd", this.localeText = this.getLocaleText(), (0, i.default)(this.element, { valueAsDate: { get: function() {
+          (0, s.default)(this, F), this.element = j, this.element.setAttribute("data-has-picker", ""), this.locale = this.element.getAttribute("lang") || document.body.getAttribute("lang") || "en", this.format = this.element.getAttribute("date-format") || document.body.getAttribute("date-format") || this.element.getAttribute("data-date-format") || document.body.getAttribute("data-date-format") || "yyyy-mm-dd", this.localeText = this.getLocaleText(), (0, i.default)(this.element, { valueAsDate: { get: function() {
             if (!C.element.value)
               return null;
             var g = C.format || "yyyy-mm-dd", _ = C.element.value.match(/(\d+)/g), M = 0, w = {};
@@ -595,7 +595,7 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
             h.default.sync();
           });
         }
-        return (0, f.default)(P, [{ key: "getLocaleText", value: function() {
+        return (0, f.default)(F, [{ key: "getLocaleText", value: function() {
           var j = this.locale.toLowerCase();
           for (var C in S.default) {
             var N = C.split("_");
@@ -614,14 +614,14 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
           if (!C)
             return !1;
           for (var N = 0; N < C; ++N)
-            new P(j[N]);
+            new F(j[N]);
         } }, { key: "addPickerToOtherInputs", value: function() {
           var j = document.querySelectorAll('input[type="text"].date-polyfill:not([data-has-picker])'), C = j.length;
           if (!C)
             return !1;
           for (var N = 0; N < C; ++N)
-            new P(j[N]);
-        } }]), P;
+            new F(j[N]);
+        } }]), F;
       }();
       l.default = E;
     }, function(e, l) {
@@ -701,14 +701,14 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
           this.daysHead.innerHTML = d.join(""), f.createRangeSelect(this.month, 0, 11, this.locale.months);
         } }, { key: "refreshDaysMatrix", value: function() {
           this.refreshLocale();
-          for (var d = this.date.getFullYear(), h = this.date.getMonth(), y = new Date(d, h, 1).getDay(), S = new Date(this.date.getFullYear(), h + 1, 0).getDate(), v = f.absoluteDate(this.input.valueAsDate) || !1, k = v && d === v.getFullYear() && h === v.getMonth(), E = [], P = 0; P < S + y; ++P)
-            if (P % 7 === 0 && E.push(`
-          ` + (P !== 0 ? "</tr>" : "") + `
+          for (var d = this.date.getFullYear(), h = this.date.getMonth(), y = new Date(d, h, 1).getDay(), S = new Date(this.date.getFullYear(), h + 1, 0).getDate(), v = f.absoluteDate(this.input.valueAsDate) || !1, k = v && d === v.getFullYear() && h === v.getMonth(), E = [], F = 0; F < S + y; ++F)
+            if (F % 7 === 0 && E.push(`
+          ` + (F !== 0 ? "</tr>" : "") + `
           <tr>
-        `), P + 1 <= y)
+        `), F + 1 <= y)
               E.push("<td></td>");
             else {
-              var j = P + 1 - y, C = k && v.getDate() === j;
+              var j = F + 1 - y, C = k && v.getDate() === j;
               E.push("<td data-day " + (C ? "data-selected" : "") + `>
           ` + j + `
         </td>`);
@@ -966,7 +966,7 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         return u >= i.length ? { value: void 0, done: !0 } : (n = o(i, u), this._i += n.length, { value: n, done: !1 });
       });
     }, function(e, l, t) {
-      var o = t(2), n = t(3), i = t(1), u = t(10), s = t(39), c = t(64).KEY, f = t(11), d = t(23), h = t(21), y = t(15), S = t(7), v = t(27), k = t(26), E = t(63), P = t(57), j = t(60), C = t(9), N = t(5), g = t(25), _ = t(14), M = t(34), w = t(66), T = t(65), D = t(4), F = t(13), R = T.f, K = D.f, I = w.f, Y = o.Symbol, U = o.JSON, V = U && U.stringify, z = "prototype", B = S("_hidden"), st = S("toPrimitive"), $ = {}.propertyIsEnumerable, at = d("symbol-registry"), et = d("symbols"), q = d("op-symbols"), H = Object[z], L = typeof Y == "function", Q = o.QObject, Mt = !Q || !Q[z] || !Q[z].findChild, dt = i && f(function() {
+      var o = t(2), n = t(3), i = t(1), u = t(10), s = t(39), c = t(64).KEY, f = t(11), d = t(23), h = t(21), y = t(15), S = t(7), v = t(27), k = t(26), E = t(63), F = t(57), j = t(60), C = t(9), N = t(5), g = t(25), _ = t(14), M = t(34), w = t(66), T = t(65), D = t(4), P = t(13), R = T.f, K = D.f, I = w.f, Y = o.Symbol, U = o.JSON, V = U && U.stringify, z = "prototype", B = S("_hidden"), st = S("toPrimitive"), $ = {}.propertyIsEnumerable, at = d("symbol-registry"), et = d("symbols"), q = d("op-symbols"), H = Object[z], L = typeof Y == "function", Q = o.QObject, Mt = !Q || !Q[z] || !Q[z].findChild, dt = i && f(function() {
         return M(K({}, "a", { get: function() {
           return K(this, "a", { value: 7 }).a;
         } })).a != 7;
@@ -984,7 +984,7 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         return x === H && nt(q, A, J), C(x), A = g(A, !0), C(J), n(et, A) ? (J.enumerable ? (n(x, B) && x[B][A] && (x[B][A] = !1), J = M(J, { enumerable: _(0, !1) })) : (n(x, B) || K(x, B, _(1, {})), x[B][A] = !0), dt(x, A, J)) : K(x, A, J);
       }, bt = function(x, A) {
         C(x);
-        for (var J, X = P(A = N(A)), lt = 0, ft = X.length; ft > lt; )
+        for (var J, X = F(A = N(A)), lt = 0, ft = X.length; ft > lt; )
           nt(x, J = X[lt++], A[J]);
         return x;
       }, St = function(x, A) {
@@ -1020,7 +1020,7 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       }), u(u.G + u.W + u.F * !L, { Symbol: Y });
       for (var ht = "hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","), mt = 0; ht.length > mt; )
         S(ht[mt++]);
-      for (var ht = F(S.store), mt = 0; ht.length > mt; )
+      for (var ht = P(S.store), mt = 0; ht.length > mt; )
         k(ht[mt++]);
       u(u.S + u.F * !L, "Symbol", { for: function(x) {
         return n(at, x += "") ? at[x] : at[x] = Y(x);
@@ -1089,15 +1089,15 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
             for (; D < w.parts.length; D++)
               T.parts.push(f(w.parts[D], _));
           } else {
-            for (var F = [], D = 0; D < w.parts.length; D++)
-              F.push(f(w.parts[D], _));
-            S[w.id] = { id: w.id, refs: 1, parts: F };
+            for (var P = [], D = 0; D < w.parts.length; D++)
+              P.push(f(w.parts[D], _));
+            S[w.id] = { id: w.id, refs: 1, parts: P };
           }
         }
       }
       function n(g) {
         for (var _ = [], M = {}, w = 0; w < g.length; w++) {
-          var T = g[w], D = T[0], F = T[1], R = T[2], K = T[3], I = { css: F, media: R, sourceMap: K };
+          var T = g[w], D = T[0], P = T[1], R = T[2], K = T[3], I = { css: P, media: R, sourceMap: K };
           M[D] ? M[D].parts.push(I) : _.push(M[D] = { id: D, parts: [I] });
         }
         return _;
@@ -1129,18 +1129,18 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         var M, w, T;
         if (_.singleton) {
           var D = j++;
-          M = P || (P = s(_)), w = d.bind(null, M, D, !1), T = d.bind(null, M, D, !0);
+          M = F || (F = s(_)), w = d.bind(null, M, D, !1), T = d.bind(null, M, D, !0);
         } else
           g.sourceMap && typeof URL == "function" && typeof URL.createObjectURL == "function" && typeof URL.revokeObjectURL == "function" && typeof Blob == "function" && typeof btoa == "function" ? (M = c(_), w = y.bind(null, M), T = function() {
             u(M), M.href && URL.revokeObjectURL(M.href);
           }) : (M = s(_), w = h.bind(null, M), T = function() {
             u(M);
           });
-        return w(g), function(F) {
-          if (F) {
-            if (F.css === g.css && F.media === g.media && F.sourceMap === g.sourceMap)
+        return w(g), function(P) {
+          if (P) {
+            if (P.css === g.css && P.media === g.media && P.sourceMap === g.sourceMap)
               return;
-            w(g = F);
+            w(g = P);
           } else
             T();
         };
@@ -1150,8 +1150,8 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         if (g.styleSheet)
           g.styleSheet.cssText = N(_, T);
         else {
-          var D = document.createTextNode(T), F = g.childNodes;
-          F[_] && g.removeChild(F[_]), F.length ? g.insertBefore(D, F[_]) : g.appendChild(D);
+          var D = document.createTextNode(T), P = g.childNodes;
+          P[_] && g.removeChild(P[_]), P.length ? g.insertBefore(D, P[_]) : g.appendChild(D);
         }
       }
       function h(g, _) {
@@ -1180,13 +1180,13 @@ var Ce = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
       }), E = v(function() {
         return document.head || document.getElementsByTagName("head")[0];
-      }), P = null, j = 0, C = [];
+      }), F = null, j = 0, C = [];
       e.exports = function(g, _) {
         _ = _ || {}, typeof _.singleton > "u" && (_.singleton = k()), typeof _.insertAt > "u" && (_.insertAt = "bottom");
         var M = n(g);
         return o(M, _), function(w) {
           for (var T = [], D = 0; D < M.length; D++) {
-            var F = M[D], R = S[F.id];
+            var P = M[D], R = S[P.id];
             R.refs--, T.push(R);
           }
           if (w) {
@@ -1282,7 +1282,7 @@ function Oe(a) {
   function i(c, f) {
     return (
       /*statusCheckError*/
-      c[12] === ue ? Le : Pe
+      c[12] === ue ? Le : Fe
     );
   }
   let u = i(a), s = u(a);
@@ -1423,13 +1423,13 @@ function Te(a) {
   ), u, s, c, f, d, h = (
     /*backendData*/
     a[8].data[0].third_party_spread + ""
-  ), y, S, v, k, E, P = (
+  ), y, S, v, k, E, F = (
     /*backendData*/
     a[8].data[0].sold_ccy + ""
   ), j, C, N = (
     /*backendData*/
-    a[8].data[0].third_party_profit.toFixed(4) + ""
-  ), g, _, M, w, T, D, F, R, K, I = (
+    a[8].data[0].third_party_profit + ""
+  ), g, _, M, w, T, D, P, R, K, I = (
     /*backendData*/
     a[8].data[0].integritas_rate.toFixed(4) + ""
   ), Y, U, V, z, B, st, $, at, et, q = (
@@ -1443,15 +1443,15 @@ function Te(a) {
     c() {
       r = b("div"), e = b("div"), l = b("h1"), l.textContent = "Your Provider", t = W(), o = b("p"), n = G(`Your exchange rate
                         was `), u = G(i), s = W(), q && q.c(), c = W(), f = b("p"), d = G("Your provider's markup was "), y = G(h), S = G("%"), v = W(), k = b("p"), E = G(`Your provider
-                        charged `), j = G(P), C = W(), g = G(N), _ = G(` on
+                        charged `), j = G(F), C = W(), g = G(N), _ = G(` on
                         this trade`), M = W(), w = b("div"), T = b("h1"), D = G(
         /*name*/
         a[5]
-      ), F = W(), R = b("p"), K = G("Our exchange rate was "), Y = G(I), U = W(), H && H.c(), V = W(), z = b("div"), B = b("button"), st = G("Calculate again"), m(l, "class", "text-2xl"), m(o, "class", "text-sm"), m(f, "class", "text-sm"), m(k, "class", "text-sm"), m(e, "class", "flex flex-col gap-2"), m(T, "class", "text-2xl mt-4"), m(R, "class", "text-sm"), m(w, "class", "flex flex-col gap-2"), m(r, "class", "flex flex-col divide-y gap-4"), kt(r, "height", "95%"), m(B, "class", "px-6 py-3"), m(B, "style", $ = `${/*button_style*/
+      ), P = W(), R = b("p"), K = G("Our exchange rate was "), Y = G(I), U = W(), H && H.c(), V = W(), z = b("div"), B = b("button"), st = G("Calculate again"), m(l, "class", "text-2xl"), m(o, "class", "text-sm"), m(f, "class", "text-sm"), m(k, "class", "text-sm"), m(e, "class", "flex flex-col gap-2"), m(T, "class", "text-2xl mt-4"), m(R, "class", "text-sm"), m(w, "class", "flex flex-col gap-2"), m(r, "class", "flex flex-col divide-y gap-4"), kt(r, "height", "95%"), m(B, "class", "px-6 py-3"), m(B, "style", $ = `${/*button_style*/
       a[14]} margin-bottom: 1.5rem;`), m(z, "class", "w-full");
     },
     m(L, Q) {
-      ut(L, r, Q), p(r, e), p(e, l), p(e, t), p(e, o), p(o, n), p(o, u), p(e, s), q && q.m(e, null), p(e, c), p(e, f), p(f, d), p(f, y), p(f, S), p(e, v), p(e, k), p(k, E), p(k, j), p(k, C), p(k, g), p(k, _), p(r, M), p(r, w), p(w, T), p(T, D), p(w, F), p(w, R), p(R, K), p(R, Y), p(w, U), H && H.m(w, null), ut(L, V, Q), ut(L, z, Q), p(z, B), p(B, st), at || (et = Jt(
+      ut(L, r, Q), p(r, e), p(e, l), p(e, t), p(e, o), p(o, n), p(o, u), p(e, s), q && q.m(e, null), p(e, c), p(e, f), p(f, d), p(f, y), p(f, S), p(e, v), p(e, k), p(k, E), p(k, j), p(k, C), p(k, g), p(k, _), p(r, M), p(r, w), p(w, T), p(T, D), p(w, P), p(w, R), p(R, K), p(R, Y), p(w, U), H && H.m(w, null), ut(L, V, Q), ut(L, z, Q), p(z, B), p(B, st), at || (et = Jt(
         B,
         "click",
         /*click_handler*/
@@ -1465,10 +1465,10 @@ function Te(a) {
       L[17] ? q ? q.p(L, Q) : (q = ne(L), q.c(), q.m(e, c)) : q && (q.d(1), q = null), Q[0] & /*backendData*/
       256 && h !== (h = /*backendData*/
       L[8].data[0].third_party_spread + "") && _t(y, h), Q[0] & /*backendData*/
-      256 && P !== (P = /*backendData*/
-      L[8].data[0].sold_ccy + "") && _t(j, P), Q[0] & /*backendData*/
+      256 && F !== (F = /*backendData*/
+      L[8].data[0].sold_ccy + "") && _t(j, F), Q[0] & /*backendData*/
       256 && N !== (N = /*backendData*/
-      L[8].data[0].third_party_profit.toFixed(4) + "") && _t(g, N), Q[0] & /*name*/
+      L[8].data[0].third_party_profit + "") && _t(g, N), Q[0] & /*name*/
       32 && _t(
         D,
         /*name*/
@@ -1486,20 +1486,20 @@ function Te(a) {
   };
 }
 function je(a) {
-  let r, e, l, t, o, n, i, u, s, c, f, d, h, y, S, v, k, E, P, j, C, N, g, _, M, w, T, D, F, R, K, I, Y, U, V, z, B, st, $, at, et, q, H, L, Q, Mt, dt, O, rt, nt, bt, St, Z, gt, wt, xt, ht, mt, x, A, J, X, lt, ft, yt, Dt, Ot, Et, At, Tt, qt, Ut, Rt, It, Vt, ct = (
+  let r, e, l, t, o, n, i, u, s, c, f, d, h, y, S, v, k, E, F, j, C, N, g, _, M, w, T, D, P, R, K, I, Y, U, V, z, B, st, $, at, et, q, H, L, Q, Mt, dt, O, rt, nt, bt, St, Z, gt, wt, xt, ht, mt, x, A, J, X, lt, ft, yt, Dt, Ot, Et, At, Tt, qt, Ut, Rt, It, Vt, ct = (
     /*shouldShowEmail*/
     a[16] && re(a)
   );
   function Qt(ot, pt) {
     return (
       /*isFetching*/
-      ot[11] ? Ne : Fe
+      ot[11] ? Ne : Pe
     );
   }
   let Yt = Qt(a), vt = Yt(a);
   return {
     c() {
-      r = b("form"), e = b("div"), l = b("div"), t = b("div"), o = b("label"), o.textContent = "Select Date", n = W(), i = b("input"), u = W(), s = b("div"), c = b("label"), c.textContent = "Select Time", f = W(), d = b("input"), h = W(), y = b("div"), S = b("div"), v = b("label"), v.textContent = "Sell Amount", k = W(), E = b("input"), P = W(), j = b("div"), C = b("label"), N = G("Sell Currency"), g = W(), _ = b("select"), M = b("option"), M.textContent = "GBP", w = b("option"), w.textContent = "USD", T = b("option"), T.textContent = "EUR", D = b("option"), D.textContent = "JPY", F = b("option"), F.textContent = "CHF", R = b("option"), R.textContent = "CNY", K = b("option"), K.textContent = "NZD", I = b("option"), I.textContent = "SGD", Y = b("option"), Y.textContent = "INR", U = b("option"), U.textContent = "AUD", V = b("option"), V.textContent = "CAD", z = b("option"), z.textContent = "HKD", B = b("option"), B.textContent = "MYR", st = b("option"), st.textContent = "NOK", $ = b("option"), $.textContent = "ZAR", at = b("option"), at.textContent = "RUB", et = b("option"), et.textContent = "SEK", q = W(), H = b("div"), L = b("div"), Q = b("label"), Q.textContent = "Buy Amount", Mt = W(), dt = b("input"), O = W(), rt = b("div"), nt = b("label"), bt = G("Buy Currency"), St = W(), Z = b("select"), gt = b("option"), gt.textContent = "USD", wt = b("option"), wt.textContent = "GBP", xt = b("option"), xt.textContent = "EUR", ht = b("option"), ht.textContent = "JPY", mt = b("option"), mt.textContent = "CHF", x = b("option"), x.textContent = "CNY", A = b("option"), A.textContent = "NZD", J = b("option"), J.textContent = "SGD", X = b("option"), X.textContent = "INR", lt = b("option"), lt.textContent = "AUD", ft = b("option"), ft.textContent = "CAD", yt = b("option"), yt.textContent = "HKD", Dt = b("option"), Dt.textContent = "MYR", Ot = b("option"), Ot.textContent = "NOK", Et = b("option"), Et.textContent = "ZAR", At = b("option"), At.textContent = "RUB", Tt = b("option"), Tt.textContent = "SEK", qt = W(), ct && ct.c(), Ut = W(), Rt = b("div"), vt.c(), m(o, "for", "date"), m(i, "id", "date"), m(i, "type", "date"), m(i, "class", "w-full rounded-md px-3 py-2 mt-4"), m(i, "name", "date"), m(i, "placeholder", "Select date"), i.required = !0, m(
+      r = b("form"), e = b("div"), l = b("div"), t = b("div"), o = b("label"), o.textContent = "Select Date", n = W(), i = b("input"), u = W(), s = b("div"), c = b("label"), c.textContent = "Select Time", f = W(), d = b("input"), h = W(), y = b("div"), S = b("div"), v = b("label"), v.textContent = "Sell Amount", k = W(), E = b("input"), F = W(), j = b("div"), C = b("label"), N = G("Sell Currency"), g = W(), _ = b("select"), M = b("option"), M.textContent = "GBP", w = b("option"), w.textContent = "USD", T = b("option"), T.textContent = "EUR", D = b("option"), D.textContent = "JPY", P = b("option"), P.textContent = "CHF", R = b("option"), R.textContent = "CNY", K = b("option"), K.textContent = "NZD", I = b("option"), I.textContent = "SGD", Y = b("option"), Y.textContent = "INR", U = b("option"), U.textContent = "AUD", V = b("option"), V.textContent = "CAD", z = b("option"), z.textContent = "HKD", B = b("option"), B.textContent = "MYR", st = b("option"), st.textContent = "NOK", $ = b("option"), $.textContent = "ZAR", at = b("option"), at.textContent = "RUB", et = b("option"), et.textContent = "SEK", q = W(), H = b("div"), L = b("div"), Q = b("label"), Q.textContent = "Buy Amount", Mt = W(), dt = b("input"), O = W(), rt = b("div"), nt = b("label"), bt = G("Buy Currency"), St = W(), Z = b("select"), gt = b("option"), gt.textContent = "USD", wt = b("option"), wt.textContent = "GBP", xt = b("option"), xt.textContent = "EUR", ht = b("option"), ht.textContent = "JPY", mt = b("option"), mt.textContent = "CHF", x = b("option"), x.textContent = "CNY", A = b("option"), A.textContent = "NZD", J = b("option"), J.textContent = "SGD", X = b("option"), X.textContent = "INR", lt = b("option"), lt.textContent = "AUD", ft = b("option"), ft.textContent = "CAD", yt = b("option"), yt.textContent = "HKD", Dt = b("option"), Dt.textContent = "MYR", Ot = b("option"), Ot.textContent = "NOK", Et = b("option"), Et.textContent = "ZAR", At = b("option"), At.textContent = "RUB", Tt = b("option"), Tt.textContent = "SEK", qt = W(), ct && ct.c(), Ut = W(), Rt = b("div"), vt.c(), m(o, "for", "date"), m(i, "id", "date"), m(i, "type", "date"), m(i, "class", "w-full rounded-md px-3 py-2 mt-4"), m(i, "name", "date"), m(i, "placeholder", "Select date"), i.required = !0, m(
         i,
         "style",
         /*input_style*/
@@ -1519,7 +1519,7 @@ function je(a) {
         "color",
         /*text_color*/
         a[6]
-      ), M.selected = !0, M.__value = "GBP", M.value = M.__value, w.__value = "USD", w.value = w.__value, T.__value = "EUR", T.value = T.__value, D.__value = "JPY", D.value = D.__value, F.__value = "CHF", F.value = F.__value, R.__value = "CNY", R.value = R.__value, K.__value = "NZD", K.value = K.__value, I.__value = "SGD", I.value = I.__value, Y.__value = "INR", Y.value = Y.__value, U.__value = "AUD", U.value = U.__value, V.__value = "CAD", V.value = V.__value, z.__value = "HKD", z.value = z.__value, B.__value = "MYR", B.value = B.__value, st.__value = "NOK", st.value = st.__value, $.__value = "ZAR", $.value = $.__value, at.__value = "RUB", at.value = at.__value, et.__value = "SEK", et.value = et.__value, m(_, "name", "sold_ccy"), m(_, "id", "sold_ccy"), m(_, "class", "w-full rounded-md px-3 py-2 mt-4"), _.required = !0, m(
+      ), M.selected = !0, M.__value = "GBP", M.value = M.__value, w.__value = "USD", w.value = w.__value, T.__value = "EUR", T.value = T.__value, D.__value = "JPY", D.value = D.__value, P.__value = "CHF", P.value = P.__value, R.__value = "CNY", R.value = R.__value, K.__value = "NZD", K.value = K.__value, I.__value = "SGD", I.value = I.__value, Y.__value = "INR", Y.value = Y.__value, U.__value = "AUD", U.value = U.__value, V.__value = "CAD", V.value = V.__value, z.__value = "HKD", z.value = z.__value, B.__value = "MYR", B.value = B.__value, st.__value = "NOK", st.value = st.__value, $.__value = "ZAR", $.value = $.__value, at.__value = "RUB", at.value = at.__value, et.__value = "SEK", et.value = et.__value, m(_, "name", "sold_ccy"), m(_, "id", "sold_ccy"), m(_, "class", "w-full rounded-md px-3 py-2 mt-4"), _.required = !0, m(
         _,
         "style",
         /*input_style*/
@@ -1542,7 +1542,7 @@ function je(a) {
       ), m(rt, "class", "w-full"), m(H, "class", "flex flex-col sm:flex-row sm:justify-between sm:gap-12"), m(e, "class", "flex flex-col sm:gap-4");
     },
     m(ot, pt) {
-      ut(ot, r, pt), p(r, e), p(e, l), p(l, t), p(t, o), p(t, n), p(t, i), p(l, u), p(l, s), p(s, c), p(s, f), p(s, d), p(e, h), p(e, y), p(y, S), p(S, v), p(S, k), p(S, E), p(y, P), p(y, j), p(j, C), p(C, N), p(j, g), p(j, _), p(_, M), p(_, w), p(_, T), p(_, D), p(_, F), p(_, R), p(_, K), p(_, I), p(_, Y), p(_, U), p(_, V), p(_, z), p(_, B), p(_, st), p(_, $), p(_, at), p(_, et), p(e, q), p(e, H), p(H, L), p(L, Q), p(L, Mt), p(L, dt), p(H, O), p(H, rt), p(rt, nt), p(nt, bt), p(rt, St), p(rt, Z), p(Z, gt), p(Z, wt), p(Z, xt), p(Z, ht), p(Z, mt), p(Z, x), p(Z, A), p(Z, J), p(Z, X), p(Z, lt), p(Z, ft), p(Z, yt), p(Z, Dt), p(Z, Ot), p(Z, Et), p(Z, At), p(Z, Tt), p(e, qt), ct && ct.m(e, null), p(e, Ut), p(e, Rt), vt.m(Rt, null), It || (Vt = Jt(
+      ut(ot, r, pt), p(r, e), p(e, l), p(l, t), p(t, o), p(t, n), p(t, i), p(l, u), p(l, s), p(s, c), p(s, f), p(s, d), p(e, h), p(e, y), p(y, S), p(S, v), p(S, k), p(S, E), p(y, F), p(y, j), p(j, C), p(C, N), p(j, g), p(j, _), p(_, M), p(_, w), p(_, T), p(_, D), p(_, P), p(_, R), p(_, K), p(_, I), p(_, Y), p(_, U), p(_, V), p(_, z), p(_, B), p(_, st), p(_, $), p(_, at), p(_, et), p(e, q), p(e, H), p(H, L), p(L, Q), p(L, Mt), p(L, dt), p(H, O), p(H, rt), p(rt, nt), p(nt, bt), p(rt, St), p(rt, Z), p(Z, gt), p(Z, wt), p(Z, xt), p(Z, ht), p(Z, mt), p(Z, x), p(Z, A), p(Z, J), p(Z, X), p(Z, lt), p(Z, ft), p(Z, yt), p(Z, Dt), p(Z, Ot), p(Z, Et), p(Z, At), p(Z, Tt), p(e, qt), ct && ct.m(e, null), p(e, Ut), p(e, Rt), vt.m(Rt, null), It || (Vt = Jt(
         r,
         "submit",
         /*handleFormSubmit*/
@@ -1719,7 +1719,7 @@ function Ne(a) {
     }
   };
 }
-function Fe(a) {
+function Pe(a) {
   let r, e, l, t;
   return {
     c() {
@@ -1750,7 +1750,7 @@ function Fe(a) {
     }
   };
 }
-function Pe(a) {
+function Fe(a) {
   let r, e;
   return {
     c() {
@@ -1822,8 +1822,8 @@ function Ye(a) {
   return a === "dark" ? !0 : a === "light" ? !1 : window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 function He(a, r, e) {
-  let l, t, o, n, i, u, { mode: s = "auto" } = r, { height: c = "100%" } = r, { width: f = "100%" } = r, { light_mode_background: d = "#ffffff" } = r, { dark_mode_background: h = "#1f2937" } = r, { light_mode_text_color: y = "#1f2937" } = r, { dark_mode_text_color: S = "#f9fafb" } = r, { dark_mode_input_background: v = "#374151" } = r, { light_mode_input_background: k = "#f9fafb" } = r, { dark_mode_button_color: E = "#374151" } = r, { light_mode_button_color: P = "#f9fafb" } = r, { light_mode_border_color: j = "#D1D5DB" } = r, { dark_mode_border_color: C = "#374151" } = r, { border_radius: N = "15px" } = r, { input_border_radius: g = "5" } = r, { shadow: _ = "md" } = r, { opacity: M = 100 } = r, { name: w = "Our Results" } = r, { show_interbank_rate: T = "false" } = r, { show_email_input: D = "true" } = r;
-  function F() {
+  let l, t, o, n, i, u, { mode: s = "auto" } = r, { height: c = "100%" } = r, { width: f = "100%" } = r, { light_mode_background: d = "#ffffff" } = r, { dark_mode_background: h = "#1f2937" } = r, { light_mode_text_color: y = "#1f2937" } = r, { dark_mode_text_color: S = "#f9fafb" } = r, { dark_mode_input_background: v = "#374151" } = r, { light_mode_input_background: k = "#f9fafb" } = r, { dark_mode_button_color: E = "#374151" } = r, { light_mode_button_color: F = "#f9fafb" } = r, { light_mode_border_color: j = "#D1D5DB" } = r, { dark_mode_border_color: C = "#374151" } = r, { border_radius: N = "15px" } = r, { input_border_radius: g = "5" } = r, { shadow: _ = "md" } = r, { opacity: M = 100 } = r, { name: w = "Our Results" } = r, { show_interbank_rate: T = "false" } = r, { show_email_input: D = "true" } = r;
+  function P() {
     const O = new XMLHttpRequest();
     O.open("GET", `${ie}/`, !0), O.onerror = function() {
       O.status === 0 ? e(12, V = ue) : e(12, V = "We're sorry, our servers are currently down. Please try again later.");
@@ -1839,7 +1839,7 @@ function He(a, r, e) {
     body: JSON.stringify(O)
   });
   he(() => {
-    F();
+    P();
   });
   let K, I = !0, Y, U = !1, V;
   const z = () => {
@@ -1874,7 +1874,7 @@ function He(a, r, e) {
   let et, q, H, L;
   const Q = () => z(), Mt = (O) => z(), dt = (O) => z();
   return a.$$set = (O) => {
-    "mode" in O && e(20, s = O.mode), "height" in O && e(0, c = O.height), "width" in O && e(1, f = O.width), "light_mode_background" in O && e(21, d = O.light_mode_background), "dark_mode_background" in O && e(22, h = O.dark_mode_background), "light_mode_text_color" in O && e(23, y = O.light_mode_text_color), "dark_mode_text_color" in O && e(24, S = O.dark_mode_text_color), "dark_mode_input_background" in O && e(25, v = O.dark_mode_input_background), "light_mode_input_background" in O && e(26, k = O.light_mode_input_background), "dark_mode_button_color" in O && e(27, E = O.dark_mode_button_color), "light_mode_button_color" in O && e(28, P = O.light_mode_button_color), "light_mode_border_color" in O && e(29, j = O.light_mode_border_color), "dark_mode_border_color" in O && e(30, C = O.dark_mode_border_color), "border_radius" in O && e(2, N = O.border_radius), "input_border_radius" in O && e(31, g = O.input_border_radius), "shadow" in O && e(3, _ = O.shadow), "opacity" in O && e(4, M = O.opacity), "name" in O && e(5, w = O.name), "show_interbank_rate" in O && e(32, T = O.show_interbank_rate), "show_email_input" in O && e(33, D = O.show_email_input);
+    "mode" in O && e(20, s = O.mode), "height" in O && e(0, c = O.height), "width" in O && e(1, f = O.width), "light_mode_background" in O && e(21, d = O.light_mode_background), "dark_mode_background" in O && e(22, h = O.dark_mode_background), "light_mode_text_color" in O && e(23, y = O.light_mode_text_color), "dark_mode_text_color" in O && e(24, S = O.dark_mode_text_color), "dark_mode_input_background" in O && e(25, v = O.dark_mode_input_background), "light_mode_input_background" in O && e(26, k = O.light_mode_input_background), "dark_mode_button_color" in O && e(27, E = O.dark_mode_button_color), "light_mode_button_color" in O && e(28, F = O.light_mode_button_color), "light_mode_border_color" in O && e(29, j = O.light_mode_border_color), "dark_mode_border_color" in O && e(30, C = O.dark_mode_border_color), "border_radius" in O && e(2, N = O.border_radius), "input_border_radius" in O && e(31, g = O.input_border_radius), "shadow" in O && e(3, _ = O.shadow), "opacity" in O && e(4, M = O.opacity), "name" in O && e(5, w = O.name), "show_interbank_rate" in O && e(32, T = O.show_interbank_rate), "show_email_input" in O && e(33, D = O.show_email_input);
   }, a.$$.update = () => {
     a.$$.dirty[1] & /*show_email_input*/
     4 && e(16, l = D === "true"), a.$$.dirty[1] & /*show_interbank_rate*/
@@ -1889,7 +1889,7 @@ function He(a, r, e) {
     1610612736 | a.$$.dirty[1] & /*isDarkMode*/
     32 && e(35, n = o ? C : j), a.$$.dirty[0] & /*dark_mode_button_color, light_mode_button_color*/
     402653184 | a.$$.dirty[1] & /*isDarkMode*/
-    32 && e(7, L = o ? E : P), a.$$.dirty[0] & /*text_color*/
+    32 && e(7, L = o ? E : F), a.$$.dirty[0] & /*text_color*/
     64 | a.$$.dirty[1] & /*input_background, input_border_color, input_border_radius*/
     25 && e(15, i = `
     background-color: ${H};
@@ -1936,7 +1936,7 @@ function He(a, r, e) {
     v,
     k,
     E,
-    P,
+    F,
     j,
     C,
     g,
