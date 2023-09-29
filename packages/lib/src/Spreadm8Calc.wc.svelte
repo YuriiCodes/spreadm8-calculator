@@ -332,15 +332,15 @@
                         </div>
                     {/if}
                     <div>
-                        <!-- Show loading button button state-->
+                        <!--                                 dynamically allocate  height to take up the space when we're not rendering the email input-->
+
                         {#if !isFetching}
-                            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
-                                <div class="w-full">
-                                    <button type="submit"
-                                            class="px-6 py-3 mt-6"
-                                            style={button_style}>See your charges
-                                    </button>
-                                </div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12 w-full  items-center justify-center"
+                                 style="{!shouldShowEmail && `height: 10rem`};">
+                                <button type="submit"
+                                        class="px-6 py-3 mt-6"
+                                        style={button_style}>See your charges
+                                </button>
                             </div>
                         {:else}
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-12">
@@ -1040,6 +1040,7 @@
     .items-center {
         align-items: center
     }
+
     .justify-center {
         justify-content: center
     }

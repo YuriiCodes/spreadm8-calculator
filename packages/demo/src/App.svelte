@@ -5,7 +5,9 @@
 
 <main>
 
-    <spreadm8-calc></spreadm8-calc>
+    <spreadm8-calc
+            show_email_input="false"
+    ></spreadm8-calc>
 
 </main>
 
@@ -13,6 +15,6 @@
     main {
         width: 70vw;
         background-color: #fff;
-        height: 80vh;
+        height: 50vh;
     }
 </style>
