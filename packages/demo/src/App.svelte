@@ -1,5 +1,5 @@
 <script lang="ts">
-    // import '../../../dist/lib/my-library';
+    // import '../../../dist/lib/spreadm8-widget';
     import "../../lib"
 </script>
 
