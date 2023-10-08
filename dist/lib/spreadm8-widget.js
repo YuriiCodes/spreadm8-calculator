@@ -1826,7 +1826,7 @@ function He(a, r, e) {
   function P() {
     const O = new XMLHttpRequest();
     O.open("GET", `${ie}/`, !0), O.onerror = function() {
-      O.status === 0 ? e(12, V = ue) : e(12, V = "We're sorry, our servers are currently down. Please try again later.");
+      O.status === 0 || O.status === 403 ? e(12, V = ue) : e(12, V = "We're sorry, our servers are currently down. Please try again later.");
     }, O.send();
   }
   const R = async (O) => fetch(`${ie}/calculate`, {

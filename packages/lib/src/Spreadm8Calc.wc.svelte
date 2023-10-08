@@ -62,22 +62,36 @@
     $: isDarkMode = calculateIsDarkMode(mode);
 
     // Function to fetch data on component mount
-    function fetchDataOnMount() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `${BACKEND_URL}/`, true);
+    async function fetchDataOnMount() {
+        const CORS_ERROR_CODE = 'CORS_ERROR'; // Assuming you have defined this elsewhere
 
-        xhr.onerror = function () {
-            if (xhr.status === 0) {
-                // This is a CORS error
+        try {
+            const response = await fetch(`${BACKEND_URL}/`);
+
+            if (!response.ok) {
+                // Handle HTTP response errors
+                if (response.status === 403) {
+                    throw new Error(CORS_ERROR_CODE);
+                } else {
+                    throw new Error("We're sorry, our servers are currently down. Please try again later.");
+                }
+            }
+
+            // If you need to process the response data, you can do it here
+            // const data = await response.json();
+
+        } catch (error) {
+            // Handle the error according to your needs
+            if (error.message === CORS_ERROR_CODE) {
+                // Handle CORS error
                 statusCheckError = CORS_ERROR_CODE;
             } else {
-                // This is a network error or some other type of error
-                statusCheckError = "We're sorry, our servers are currently down. Please try again later."
+                // Handle other errors
+                statusCheckError = error.message;
             }
-        };
-
-        xhr.send();
+        }
     }
+
 
 
     const fetcher = async (data: any) => {
@@ -121,7 +135,6 @@
             if (!res.ok) {
                 // Read the error message from the response body
                 const errorRes = await res.json();
-                console.log("errorRes", errorRes)
                 throw new Error(errorRes || `HTTP error! Status: ${res.status}`);
             }
 
@@ -152,11 +165,10 @@
         data["input_spread"] = "0.2";
         data["prospect_annual_flow"] = "";
         data["email_user"] = false;
+        data["is_widget"] = true;
         if (!shouldShowEmail) {
             data["user"] = "testUserWithoutMail@gmail.com"
         }
-        console.log(data)
-
         void mutate(data)
     }
 
