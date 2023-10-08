@@ -162,7 +162,9 @@
             data[key] = value;
         }
         data["prospect"] = "";
-        data["input_spread"] = "0.2";
+        // Provide the value below if we need to give users
+        // the option to change the spread via widget
+        // data["input_spread"] = "0.2";
         data["prospect_annual_flow"] = "";
         data["email_user"] = false;
         data["is_widget"] = true;
