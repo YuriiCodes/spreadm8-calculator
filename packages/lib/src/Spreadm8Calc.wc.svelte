@@ -47,6 +47,8 @@
     export let show_interbank_rate: string = "false";
 
     export let show_email_input: string = "true";
+
+    export let spread: number = 0.2;
     // end of props
 
     $: shouldShowEmail = show_email_input === "true";
@@ -164,7 +166,7 @@
         data["prospect"] = "";
         // Provide the value below if we need to give users
         // the option to change the spread via widget
-        // data["input_spread"] = "0.2";
+        data["input_spread"] = spread.toString();
         data["prospect_annual_flow"] = "";
         data["email_user"] = false;
         data["is_widget"] = true;
