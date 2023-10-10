@@ -48,7 +48,7 @@
 
     export let show_email_input: string = "true";
 
-    export let spread: number = 0.2;
+    export let spread: number = 0;
     // end of props
 
     $: shouldShowEmail = show_email_input === "true";
